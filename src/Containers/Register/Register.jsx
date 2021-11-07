@@ -1,10 +1,10 @@
 import React from 'react';
-import './Footer.css';
+import './Register.css';
 
-const Footer = () => {
+const Register = () => {
     return (
-        <div className="footer">this is Footer</div>
+        <div className="register">this is Register</div>
     )
 };
 
-export default Footer;
+export default Register;

@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 const Button = (props) => {
 
-    const link = useNavigate();
+    const navigate = useNavigate();
 
     const next = () => {
-        link.push(props.url);
+        navigate(props.url);
     }
 
     return (
