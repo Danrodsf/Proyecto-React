@@ -1,10 +1,9 @@
 import React from 'react';
-
 import './Login.css';
 
 const Login = () => {
     return (
-        <div className="login">HOLA ESTAS EN Login</div>
+        <div className="login">this is Login</div>
     )
 };
 
