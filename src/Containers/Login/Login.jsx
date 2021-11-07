@@ -51,11 +51,12 @@ const Login = () => {
 
     }
 
+    // // Esto es para checkeo de Input y va antes del 1er input
+    // <pre>{JSON.stringify(creds, null, 2)}</pre> 
 
     return (
 
         <div className="login">
-            <pre>{JSON.stringify(creds, null, 2)}</pre>
             <input type='email' name='email' title='email' onChange={inputHandler} lenght='30' />
             <input type='password' name='password' title='password' onChange={inputHandler} lenght='30' />
             <div className="sendBtn" onClick={() => logIn()}>Login</div>

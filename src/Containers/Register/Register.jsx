@@ -71,9 +71,12 @@ const Register = () => {
 
     };
 
+    // // Esto es para checkeo de Input y va antes del 1er input
+    // <pre>{JSON.stringify(creds, null, 2)}</pre> 
+
     return (
         <div className='register'>
-            <pre>{JSON.stringify(creds, null, 2)}</pre>
+
             <input
                 type='text'
                 name='name'

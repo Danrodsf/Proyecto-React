@@ -8,7 +8,9 @@ const Header = () => {
         <div className="header">
             <Button view="Home" url="/" />
             <Button view="Login" url="/login" />
-            <Button view="Registro" url="/register" />
+            <Button view="Register" url="/register" />
+            <Button view="Profile" url="/profile" />
+            <Button view="Movies" url="/movies" />
         </div>
     )
 
