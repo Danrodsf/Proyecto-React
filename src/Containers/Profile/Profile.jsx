@@ -12,10 +12,11 @@ const Profile = () => {
 
     return (
         <div className="profileView">
-            <div className=""></div>
-            <div>{profileData.name}</div>
-            <div>{profileData.email}</div>
-            <div>{profileData.city}</div>
+            <div className="profiles">
+                <div><p>Name:</p>{profileData.name}</div>
+                <div><p>Email:</p>{profileData.email}</div>
+                <div><p>City:</p>{profileData.city}</div>
+            </div>
         </div>
     )
 };

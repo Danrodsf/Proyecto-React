@@ -57,8 +57,8 @@ const Login = () => {
     return (
 
         <div className="loginView">
-            <input type='email' name='email' title='email' onChange={inputHandler} lenght='30' />
-            <input type='password' name='password' title='password' onChange={inputHandler} lenght='30' />
+            Email:<input type='email' name='email' title='email' onChange={inputHandler} lenght='30' />
+            Password:<input type='password' name='password' title='password' onChange={inputHandler} lenght='30' />
             <div className="sendBtn" onClick={() => logIn()}>Login</div>
             <div className="error"><h3>{msgError}</h3></div>
         </div>
