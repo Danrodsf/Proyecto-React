@@ -1,7 +1,19 @@
 .login {
     display: flex;
+    flex-direction: column;
     justify-content:center;
     align-items: center;
     height: 59.95em;
     background-color:mediumturquoise;
+}
+
+.sendBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightslategray;
+    border-radius: 0.5em;
+    height: 2em;
+    width: 5em;
+    margin: 1em;
 }
