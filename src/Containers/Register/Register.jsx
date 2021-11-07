@@ -75,9 +75,9 @@ const Register = () => {
     // <pre>{JSON.stringify(creds, null, 2)}</pre> 
 
     return (
-        <div className='register'>
+        <div className='registerView'>
 
-            <input
+            Name: <input
                 type='text'
                 name='name'
                 title='name'
@@ -85,7 +85,7 @@ const Register = () => {
                 lenght='30'
                 onChange={userHandler}
             />
-            <input
+            Surname:<input
                 type='text'
                 name='surname'
                 title='surname'
@@ -93,7 +93,7 @@ const Register = () => {
                 lenght='30'
                 onChange={userHandler}
             />
-            <input
+            DNI:<input
                 type='text'
                 name='dni'
                 title='dni'
@@ -101,7 +101,7 @@ const Register = () => {
                 lenght='10'
                 onChange={userHandler}
             />
-            <input
+            Email:<input
                 type='email'
                 name='email'
                 title='email'
@@ -109,7 +109,7 @@ const Register = () => {
                 lenght='30'
                 onChange={userHandler}
             />
-            <input
+            Address:<input
                 type='text'
                 name='address'
                 title='address'
@@ -117,7 +117,7 @@ const Register = () => {
                 lenght='30'
                 onChange={userHandler}
             />
-            <input
+            City:<input
                 type='text'
                 name='city'
                 title='city'
@@ -125,7 +125,7 @@ const Register = () => {
                 lenght='30'
                 onChange={userHandler}
             />
-            <input
+            Postal Code:<input
                 type='number'
                 name='postalcode'
                 title='postalcode'
@@ -133,7 +133,7 @@ const Register = () => {
                 lenght='30'
                 onChange={userHandler}
             />
-            <input
+            Phone:<input
                 type='text'
                 name='phone'
                 title='phone'
@@ -141,7 +141,7 @@ const Register = () => {
                 lenght='12'
                 onChange={userHandler}
             />
-            <input
+            Password:<input
                 type='text'
                 name='password'
                 title='password'
@@ -149,7 +149,7 @@ const Register = () => {
                 lenght='30'
                 onChange={userHandler}
             />
-            <input
+            Repeat Password<input
                 type='text'
                 name='password2'
                 title='password2'

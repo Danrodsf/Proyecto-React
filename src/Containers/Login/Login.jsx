@@ -45,7 +45,7 @@ const Login = () => {
 
         catch (error) {
 
-            setmsgError("Cannot LogIn");
+            setmsgError("Cannot Log In");
 
         }
 
@@ -56,11 +56,11 @@ const Login = () => {
 
     return (
 
-        <div className="login">
+        <div className="loginView">
             <input type='email' name='email' title='email' onChange={inputHandler} lenght='30' />
             <input type='password' name='password' title='password' onChange={inputHandler} lenght='30' />
             <div className="sendBtn" onClick={() => logIn()}>Login</div>
-            <div className="error">{msgError}</div>
+            <div className="error"><h3>{msgError}</h3></div>
         </div>
     )
 };

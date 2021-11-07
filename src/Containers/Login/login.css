@@ -1,4 +1,4 @@
-.login {
+.loginView {
     display: flex;
     flex-direction: column;
     justify-content:center;
@@ -11,9 +11,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightslategray;
-    border-radius: 0.5em;
     height: 2em;
     width: 5em;
-    margin: 1em;
+    border-radius: 0.5em;
+    background-color:aquamarine;
+    margin:0.5em;
+    transition: 0.3s;
+}
+
+.sendBtn:hover {
+    transition: 0.3s;
+    background-color:cadetblue;
 }

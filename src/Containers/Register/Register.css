@@ -1,8 +1,21 @@
-.register {
+.registerView {
     display: flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
     height: 59.95em;
     background-color:mediumturquoise;
+}
+
+
+input {
+    width: 20em;
+    height: 2em;
+    margin:1em;
+    transition: 0.3s;
+}
+
+input:hover {
+    transition: 0.3s;
+    border: 0.2em solid;
 }

@@ -1,6 +1,15 @@
 .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 2em;
     width: 5em;
-    background-color: lightgray;
     border-radius: 0.5em;
+    background-color:aquamarine;
+    transition: 0.3s;
+}
+
+.button:hover {
+    transition: 0.3s;
+    background-color:cadetblue;
 }

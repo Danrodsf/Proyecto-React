@@ -11,7 +11,8 @@ const Profile = () => {
     }, [])
 
     return (
-        <div className="profile">
+        <div className="profileView">
+            <div className=""></div>
             <div>{profileData.name}</div>
             <div>{profileData.email}</div>
             <div>{profileData.city}</div>

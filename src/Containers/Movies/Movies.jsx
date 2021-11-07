@@ -21,9 +21,9 @@ const GetMovies = () => {
     }
 
     return (
-        <div className="movies">
+        <div className="moviesView">
             {movies.map((movie) => {
-                return <div key={movie.id} className="movie">
+                return <div key={movie.id} className="movies">
                     <h4>Movie Number: {JSON.stringify(movie.id)}</h4>
                     <h2>{JSON.stringify(movie.title)}</h2>
                     <p>Genre: {JSON.stringify(movie.genre)}</p>
