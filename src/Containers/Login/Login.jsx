@@ -39,7 +39,7 @@ const Login = () => {
 
                 navigate("/profile");
 
-            }, 4000);
+            }, 2000);
 
         }
 
