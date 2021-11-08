@@ -13,6 +13,8 @@ const Login = () => {
     const [msgError, setmsgError] = useState("");
     const [creds, setCreds] = useState({ email: '', password: '' });
     const [login, setLogin] = useState(false);
+    const [info, setInfo] = useState(false);
+    const [profileData, setprofileData] = useState(JSON.parse(localStorage.getItem("loginData")));
 
     //Handlers
     const inputHandler = (e) => {
@@ -37,11 +39,8 @@ const Login = () => {
             localStorage.setItem("loginData", JSON.stringify(res.data.user));
             localStorage.setItem("token", (res.data.token));
 
-            setTimeout(() => {
+            setInfo(true);
 
-                navigate("/profile");
-
-            }, 2000);
 
         }
 
@@ -56,14 +55,26 @@ const Login = () => {
 
     if (login) {
 
-        return (
-            <div className="loginView">
-                <input type='email' name='email' title='email' onChange={inputHandler} lenght='30' placeholder="email" />
-                <input type='password' name='password' title='password' onChange={inputHandler} lenght='30' placeholder="Password" />
-                <div className="button" onClick={() => logIn()}>Login</div>
-                <div className="error"><h3>{msgError}</h3></div>
-            </div>
-        )
+        if (info) {
+
+            return (
+                <div className="loginView">Logged in as {profileData.name}</div>
+            )
+
+        } else {
+
+            return (
+                <div className="loginView">
+                    <input type='email' name='email' title='email' onChange={inputHandler} lenght='30' placeholder="email" />
+                    <input type='password' name='password' title='password' onChange={inputHandler} lenght='30' placeholder="Password" />
+                    <div className="button" onClick={() => logIn()}>Login</div>
+                    <div className="error"><h3>{msgError}</h3></div>
+                </div>
+            )
+
+        }
+
+
 
     } else {
 

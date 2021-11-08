@@ -1,12 +1,20 @@
 .registerView {
     display: flex;
-    flex-direction: column;
     justify-content:center;
     align-items: center;
     background-color:rgb(15, 15, 15);
     color: white;
 }
 
+.inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    justify-content:center;
+    align-items: center;
+    width: 45em;
+    height: 50em;
+}
 
 input {
     width: 20em;
@@ -17,5 +25,7 @@ input {
 
 input:hover {
     transition: 0.3s;
-    border: 0.2em solid;
+    cursor: pointer;
+    border: 0.2em solid rgb(199, 73, 15);
 }
+
