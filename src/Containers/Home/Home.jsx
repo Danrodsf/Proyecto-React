@@ -2,6 +2,7 @@ import React from 'react';
 import './Home.css';
 
 const Home = () => {
+
     return (
         <div className="homeView">
             <div className="container">
@@ -9,6 +10,7 @@ const Home = () => {
             </div>
         </div>
     )
+
 };
 
 export default Home;

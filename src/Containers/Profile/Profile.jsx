@@ -7,7 +7,9 @@ const Profile = () => {
     const [profileData, setprofileData] = useState(JSON.parse(localStorage.getItem("loginData")));
 
     useEffect(() => {
+
         console.log(profileData)
+
     }, [])
 
     return (
@@ -19,6 +21,7 @@ const Profile = () => {
             </div>
         </div>
     )
+
 };
 
 export default Profile;

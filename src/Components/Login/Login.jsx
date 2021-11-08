@@ -33,7 +33,6 @@ const Login = () => {
         try {
 
             let res = await axios.post("https://drs-proyecto-api.herokuapp.com/users/signin", body);
-            setmsgError(`Hello again ${res.data.user.name}....`);
 
             localStorage.setItem("loginData", JSON.stringify(res.data.user));
             localStorage.setItem("token", (res.data.token));
@@ -49,6 +48,7 @@ const Login = () => {
         catch (error) {
 
             setmsgError("Cannot Log In");
+            return;
 
         }
 

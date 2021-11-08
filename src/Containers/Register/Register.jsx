@@ -9,6 +9,7 @@ const Register = () => {
 
     //Hooks
     const [creds, setCreds] = useState({
+
         name: null,
         surname: null,
         dni: null,
@@ -19,13 +20,16 @@ const Register = () => {
         phone: null,
         password: null,
         password2: null,
+
     });
 
     const [errorMsg, seterrorMsg] = useState('');
 
     //Handlers
     const userHandler = (e) => {
+
         setCreds({ ...creds, [e.target.name]: e.target.value })
+
     }
 
     //funciones
@@ -33,11 +37,14 @@ const Register = () => {
         //Comprobar errores en los datos
 
         if (creds.password2 !== creds.password) {
+
             return seterrorMsg('Password does not match');
+
         }
 
         //Generacion del body
         let body = {
+
             name: creds.name,
             surname: creds.surname,
             dni: creds.dni,
@@ -47,26 +54,31 @@ const Register = () => {
             postalcode: creds.postalcode,
             phone: creds.phone,
             password: creds.password
+
         };
 
         //Conexion a axios y envio de datos
         console.log('Sending to Axios', body)
         try {
-            let res = await axios.post('https://drs-proyecto-api.herokuapp.com/users/signup', body)
 
+            let res = await axios.post('https://drs-proyecto-api.herokuapp.com/users/signup', body)
+            localStorage.setItem('loginData', JSON.stringify(res.data.user))
             seterrorMsg('New User Registered')
 
-            localStorage.setItem('loginData', JSON.stringify(res.data.user))
         }
         catch (error) {
+
             console.log(error);
             seterrorMsg('Unable to register new User');
             return;
+
         }
 
         //Recepción y guardado de datos
         setTimeout(() => {
+
             navigate('/profile');
+
         }, 2000);
 
     };
@@ -164,6 +176,7 @@ const Register = () => {
             </div>
         </div>
     );
+
 };
 
 export default Register;

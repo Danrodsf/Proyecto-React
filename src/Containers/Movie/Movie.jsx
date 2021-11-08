@@ -1,16 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './Movie.css';
 
 const Movie = () => {
 
     const [movie, setMovie] = useState(JSON.parse(localStorage.getItem("ChoosenMovie")))
 
-    useEffect(()=>{
+    useEffect(() => {
+
         console.log(movie);
-    },[])
+
+    }, [])
 
     const order = () => {
+
         console.log(`you have rented ${movie.id}`)
+
     }
 
     return (
@@ -20,7 +24,7 @@ const Movie = () => {
             <p>Genre: {JSON.stringify(movie.genre)}</p>
             <p>Available City: {JSON.stringify(movie.city)}</p>
             <p>Cast: {JSON.stringify(movie.cast)}</p>
-            <button onClick={()=>order()}>Rent</button>
+            <button onClick={() => order()}>Rent</button>
         </div>
     )
 };
