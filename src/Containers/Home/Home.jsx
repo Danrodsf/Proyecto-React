@@ -3,7 +3,11 @@ import './Home.css';
 
 const Home = () => {
     return (
-        <div className="homeView"><h1>Welcome to MovieAPP</h1></div>
+        <div className="homeView">
+            <div className="container">
+                <h1>Welcome to MovieAPP</h1>
+            </div>
+        </div>
     )
 };
 

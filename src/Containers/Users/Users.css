@@ -1,4 +1,4 @@
-.moviesView {
+.usersView {
     display: flex;
     flex-wrap:wrap;
     justify-content: space-evenly;
@@ -7,9 +7,9 @@
     color: white;
 }
 
-.movies {
+.users {
     width: 25em;
-    border:0.2em solid rgb(199, 73, 15);
+    border:0.1em solid rgb(199, 73, 15);
     border-radius: 0.5em;
     padding: 0.5em;
     margin: 2em;
@@ -17,5 +17,5 @@
 }
 
 h2 {
-   color: rgb(199, 73, 15)
+    color: rgb(199, 73, 15);
 }
