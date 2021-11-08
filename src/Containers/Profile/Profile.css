@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content:center;
     align-items: center;
-    height: 59.95em;
     background-color:rgb(15, 15, 15);
+    color: white;
 }
 
 .profiles {
@@ -15,5 +15,4 @@
     width: 30em;
     height: 20em;
     border:0.3em solid;
-    color: white;
 }
