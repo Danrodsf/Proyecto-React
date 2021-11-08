@@ -11,6 +11,7 @@ const Header = () => {
             <Button view="Register" url="/register" />
             <Button view="Profile" url="/profile" />
             <Button view="Movies" url="/movies" />
+            <Button view="Users" url="/users" />
         </div>
     )
 

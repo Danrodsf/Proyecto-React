@@ -6,6 +6,8 @@ import Login from './Containers/Login/Login';
 import Register from './Containers/Register/Register';
 import Profile from './Containers/Profile/Profile';
 import Movies from './Containers/Movies/Movies';
+import Movie from './Containers/Movie/Movie';
+import Users from './Containers/Users/Users';
 import './App.css';
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/register" element={<Register />} />
           <Route path="/movies" element={<Movies />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/movie" element={<Movie />} />
 
         </Routes>
 

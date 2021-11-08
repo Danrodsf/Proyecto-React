@@ -7,7 +7,15 @@ const Button = (props) => {
     const navigate = useNavigate();
 
     const next = () => {
-        navigate(props.url);
+        if (props.view === "Logout")  {
+            setTimeout(() => {
+                localStorage.clear();
+                navigate(props.url);
+            }, 1000);
+        } else {
+            navigate(props.url);
+        }
+        
     }
 
     return (

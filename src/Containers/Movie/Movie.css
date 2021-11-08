@@ -1,0 +1,7 @@
+.movieView {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 59.95em;
+    background-color:mediumturquoise;
+}

@@ -34,6 +34,7 @@ const Login = () => {
             setmsgError(`Hello again ${res.data.user.name}....`);
 
             localStorage.setItem("loginData", JSON.stringify(res.data.user));
+            localStorage.setItem("token",(res.data.token));
 
             setTimeout(() => {
 
