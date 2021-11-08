@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 import './Login.css';
 
 const Login = () => {
@@ -11,6 +12,7 @@ const Login = () => {
     //Hooks
     const [msgError, setmsgError] = useState("");
     const [creds, setCreds] = useState({ email: '', password: '' });
+    const [login, setLogin] = useState(false);
 
     //Handlers
     const inputHandler = (e) => {
@@ -34,7 +36,7 @@ const Login = () => {
             setmsgError(`Hello again ${res.data.user.name}....`);
 
             localStorage.setItem("loginData", JSON.stringify(res.data.user));
-            localStorage.setItem("token",(res.data.token));
+            localStorage.setItem("token", (res.data.token));
 
             setTimeout(() => {
 
@@ -52,18 +54,25 @@ const Login = () => {
 
     }
 
-    // // Esto es para checkeo de Input y va antes del 1er input
-    // <pre>{JSON.stringify(creds, null, 2)}</pre> 
+    if (login) {
 
-    return (
+        return (
+            <div className="loginView">
+                <input type='email' name='email' title='email' onChange={inputHandler} lenght='30' placeholder="email" />
+                <input type='password' name='password' title='password' onChange={inputHandler} lenght='30' placeholder="Password" />
+                <div className="button" onClick={() => logIn()}>Login</div>
+                <div className="error"><h3>{msgError}</h3></div>
+            </div>
+        )
 
-        <div className="loginView">
-            Email:<input type='email' name='email' title='email' onChange={inputHandler} lenght='30' />
-            Password:<input type='password' name='password' title='password' onChange={inputHandler} lenght='30' />
-            <div className="sendBtn" onClick={() => logIn()}>Login</div>
-            <div className="error"><h3>{msgError}</h3></div>
-        </div>
-    )
+    } else {
+
+        return (
+            <div className="loginIcon" onClick={() => setLogin(true)}>Login</div>
+        )
+
+    }
+
 };
 
 export default Login;

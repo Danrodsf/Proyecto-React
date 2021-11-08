@@ -30,14 +30,17 @@ const GetUsers = () => {
 
     return (
         <div className="usersView">
-            {Users.map((user) => {
-                return <div key={user.id} className="users">
-                    <h4>user Number: {JSON.stringify(user.id)}</h4>
-                    <h2>{JSON.stringify(user.name)}</h2>
-                    <p>email: {JSON.stringify(user.email)}</p>
-                    <p>Register Date: {JSON.stringify(user.createdAt)}</p>
-                </div>
-            })}
+            <div className="container">
+                {Users.map((user) => {
+                    return <div key={user.id} className="users">
+                        <h4>user Number: {JSON.stringify(user.id)}</h4>
+                        <h2>{JSON.stringify(user.name)}</h2>
+                        <p>email: {JSON.stringify(user.email)}</p>
+                        <p>Register Date: {JSON.stringify(user.createdAt)}</p>
+                    </div>
+                })}
+            </div>
+
         </div>
     )
 }
