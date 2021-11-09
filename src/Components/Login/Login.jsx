@@ -55,7 +55,7 @@ const Login = () => {
         if (info) {
 
             return (
-                <div className="loginView">Logged in as {profileData.name}<Button view="Logout" url="/" onClick={() => setLogin(false)} /></div>
+                <div className="loginView">Logged in as {profileData?.name}<Button view="Logout" url="/" onClick={() => setLogin(false)} /></div>
 
             )
 

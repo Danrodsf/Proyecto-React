@@ -31,8 +31,8 @@ const GetMovies = () => {
 
         try {
 
-            let res = await axios.get("https://drs-proyecto-api.herokuapp.com/movies/");
-            setMovies((res.data));
+            let res = await axios.get("https://api.themoviedb.org/3/movie/upcoming?api_key=51c1099989a6923f3d12154210fc2cf7&language=en-US&page=1");
+            setMovies((res.data.results));
 
         } catch (error) {
 
@@ -56,13 +56,11 @@ const GetMovies = () => {
                 <div className="container">
                     {movies.map((movie) => {
 
-                        return <div key={movie.id} className="movies" onClick={() => chooseMovie(movie)} >
-                            <h4>Movie Number: {JSON.stringify(movie.id)}</h4>
-                            <h2>{JSON.stringify(movie.title)}</h2>
-                            <p>Genre: {JSON.stringify(movie.genre)}</p>
-                            <p>Available City: {JSON.stringify(movie.city)}</p>
-                            <p>Cast: {JSON.stringify(movie.cast)}</p>
-                        </div>
+                        return (
+                            <div key={movie.id} className="movies">
+                                <img alt={movie.id} className="posters" onClick={() => chooseMovie(movie)} src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} />
+                            </div>
+                        )
                     })}
 
                 </div>
