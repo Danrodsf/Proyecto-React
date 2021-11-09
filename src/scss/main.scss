@@ -1,9 +1,16 @@
-.homeView {
+// Paleta de Colores
+$orange : rgb(199, 73, 15);
+$darkgray : rgb(27, 27, 27);
+$lightgray: rgb(24, 24, 24);
+
+//clases
+
+.view {
     display: flex;
     justify-content:center;
     align-items: center;
     background-color:rgb(15, 15, 15);
-    color: white;
+    color:white;
 }
 
 .container {

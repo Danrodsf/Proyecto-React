@@ -7,7 +7,8 @@ import Profile from './Containers/Profile/Profile';
 import Movies from './Containers/Movies/Movies';
 import Movie from './Containers/Movie/Movie';
 import Users from './Containers/Users/Users';
-import './App.css';
+import './App.scss';
+import './scss/main.scss';
 
 function App() {
   return (

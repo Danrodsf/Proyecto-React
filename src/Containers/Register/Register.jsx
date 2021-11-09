@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Register.css';
 
 const Register = () => {
 
@@ -87,7 +86,7 @@ const Register = () => {
     // <pre>{JSON.stringify(creds, null, 2)}</pre> 
 
     return (
-        <div className='registerView'>
+        <div className='view'>
             <div className="container">
                 <div className="inputs">
                     Name: <input

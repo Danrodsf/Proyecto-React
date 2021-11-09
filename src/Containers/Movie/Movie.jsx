@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './Movie.css';
 
 const Movie = () => {
 
@@ -18,7 +17,7 @@ const Movie = () => {
     }
 
     return (
-        <div className="movieView">
+        <div className="view">
             <h4>Movie Number: {JSON.stringify(movie.id)}</h4>
             <h2>{JSON.stringify(movie.title)}</h2>
             <p>Genre: {JSON.stringify(movie.genre)}</p>

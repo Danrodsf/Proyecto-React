@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import loading from '../../img/loading.gif'
-import './Users.css';
 
 const GetUsers = () => {
 
@@ -50,7 +49,7 @@ const GetUsers = () => {
     if (Users[1]?.name) {
 
         return (
-            <div className="usersView">
+            <div className="view">
                 <div className="container">
                     {Users.map((user) => {
 
@@ -69,7 +68,7 @@ const GetUsers = () => {
     } else if (msgError) {
 
         return (
-            <div className="usersView">
+            <div className="view">
                 <div className="container" >
                     {msgError}
                 </div>
@@ -79,7 +78,7 @@ const GetUsers = () => {
     } else {
 
         return (
-            <div className="usersView">
+            <div className="view">
                 <div className="container">
                     <img src={loading} alt="Loading" />
                 </div>

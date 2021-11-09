@@ -3,9 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
 
-
-import './Login.css';
-
 const Login = () => {
 
     const navigate = useNavigate();
@@ -42,7 +39,6 @@ const Login = () => {
 
             setInfo(true);
 
-
         }
 
         catch (error) {
@@ -75,8 +71,6 @@ const Login = () => {
             )
 
         }
-
-
 
     } else {
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import loading from '../../img/loading.gif'
-import './Movies.css';
 
 const GetMovies = () => {
 
@@ -53,7 +52,7 @@ const GetMovies = () => {
     if (movies[1]?.title) { //el " ? " sirve para que no se detenga mientras no encuentre el array
 
         return (
-            <div className="moviesView">
+            <div className="view">
                 <div className="container">
                     {movies.map((movie) => {
 
@@ -72,7 +71,7 @@ const GetMovies = () => {
     } else if (msgError) {
 
         return (
-            <div className="moviesView">
+            <div className="view">
                 <div className="container" >
                     {msgError}
                 </div>
@@ -82,7 +81,7 @@ const GetMovies = () => {
     } else {
 
         return (
-            <div className="moviesView">
+            <div className="view">
                 <div className="container">
                     <img src={loading} alt="Loading" />
                 </div>

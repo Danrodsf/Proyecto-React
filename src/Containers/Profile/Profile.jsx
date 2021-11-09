@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './Profile.css';
 
 const Profile = () => {
 
@@ -15,7 +14,7 @@ const Profile = () => {
     if (profileData) {
 
         return (
-            <div className="profileView">
+            <div className="view">
                 <div className="container">
                     <div className="profiles">
                         <div><p>Name:</p>{profileData.name}</div>
@@ -28,7 +27,7 @@ const Profile = () => {
 
     } else {
         return (
-            <div className="profileView">
+            <div className="view">
                 <div className="container">
                     You are not logged in
                 </div>

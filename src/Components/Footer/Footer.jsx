@@ -1,12 +1,10 @@
 import React from 'react';
-import './Footer.css';
-import Button from '../Button/Button';
 
 const Footer = () => {
 
     return (
         <div className="footer">
-            <Button view="Logout" url="/" />
+            esto es footer
         </div>
     )
 
