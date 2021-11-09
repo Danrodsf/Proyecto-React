@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Button from '../Button/Button';
 
 
 import './Login.css';
@@ -58,7 +59,8 @@ const Login = () => {
         if (info) {
 
             return (
-                <div className="loginView">Logged in as {profileData.name}</div>
+                <div className="loginView">Logged in as {profileData.name}<Button view="Logout" url="/" onClick={() => setLogin(false)} /></div>
+
             )
 
         } else {
