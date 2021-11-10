@@ -45,7 +45,7 @@ const GetUsers = (props) => {
 
     }
 
-    if (props.credentials?.token !== "") {
+    if (props.credentials?.user?.admin) {
 
         return (
             <div className="view">
@@ -88,6 +88,6 @@ const GetUsers = (props) => {
 
 }
 
-export default connect((state)=>({
+export default connect((state) => ({
     credentials: state.credentials
 }))(GetUsers);

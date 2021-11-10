@@ -8,11 +8,11 @@ const Header = () => {
         <div className="header">
             <div className="hcontainer">
                 <div className="navbar">
-                    <Button view="Home" url="/" />
-                    <Button view="Register" url="/register" />
-                    <Button view="Profile" url="/profile" />
-                    <Button view="Movies" url="/movies" />
-                    <Button view="Users" url="/users" />
+                    <Button view="HOME" url="/" />
+                    <Button view="REGISTER" url="/register" />
+                    <Button view="PROFILE" url="/profile" />
+                    <Button view="MOVIES" url="/movies" />
+                    <Button view="USERS" url="/users" />
                 </div>
                 <div className="navlogin">
                     <Login />

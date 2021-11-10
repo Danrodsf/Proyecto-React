@@ -1,7 +1,7 @@
 // Paleta de Colores
 $orange : rgb(199, 73, 15);
-$darkgray : rgb(27, 27, 27);
-$lightgray: rgb(24, 24, 24);
+$lightgray : rgb(27, 27, 27);
+$darkgray: rgb(24, 24, 24);
 
 //clases
 
@@ -9,7 +9,7 @@ $lightgray: rgb(24, 24, 24);
     display: flex;
     justify-content:center;
     align-items: center;
-    background-color:rgb(15, 15, 15);
+    background-color: $darkgray;
     color:white;
 }
 
@@ -23,5 +23,18 @@ $lightgray: rgb(24, 24, 24);
     align-items:center;
     overflow: auto;
     scrollbar-width: thin;
-    background-color:rgb(15, 15, 15);
+    background-color: $darkgray;
+}
+
+input {
+    width: 20em;
+    height: 2em;
+    margin:1em;
+    transition: 0.3s;
+}
+
+input:hover {
+    transition: 0.3s;
+    cursor: pointer;
+    border: 0.2em solid rgb(199, 73, 15);
 }

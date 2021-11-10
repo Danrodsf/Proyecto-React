@@ -4,6 +4,47 @@
     justify-content:space-evenly;
     align-items:center;
     width: 30em;
-    height: 20em;
+    height: 50em;
     border:0.3em solid;
+}
+
+.btn1 {
+    cursor: pointer;
+}
+
+.btn2 {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.editable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    border: 0.2em solid $orange;
+    color: $darkgray;
+    width: 5em;
+    height: 2em;
+}
+
+.hide::placeholder {
+    color: white;
+    font-size: 1.3em;
+}
+
+.hide {
+    border:none;
+    background-color: $darkgray;
+    text-align: center;
+    outline: none;
+    color:white;
+    font-size: 1.3em;
+}
+
+.hide:hover {
+    border: none;
 }
