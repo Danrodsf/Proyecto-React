@@ -1,8 +1,8 @@
 import { LOGIN, LOGOUT, UPDATE_USER } from '../types';
 
 const initialState = {
-    user: {},
-    token: ''
+    token: '',
+    user: {}
 };
 
 const credentialsReducer = (state = initialState, action) => {

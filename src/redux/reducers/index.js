@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
-import credentials from './credentials-reducer.js';
-
+import credentials from './credentials-reducer';
 
 const rootReducer = combineReducers({
     credentials

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import loading from '../../img/loading.gif'
 
-const GetUsers = () => {
+const GetUsers = (props) => {
 
     //HOOKS
     const [Users, setUsers] = useState([]);
@@ -14,16 +15,12 @@ const GetUsers = () => {
 
             getAllUsers();
 
-        }, 1000);
+        }, 500);
 
     }, [])
 
-    useEffect(() => {
-        console.log(Users)
-    })
-
     //RECUPERAMOS TOKEN
-    let token = localStorage.getItem("token");
+    let token = props.credentials.token;
 
     //CREAMOS LA CONFIGURACIÓN DEL HEADER QUE SE VA A MANDAR
     let config = {
@@ -35,8 +32,10 @@ const GetUsers = () => {
     const getAllUsers = async () => {
 
         try {
+
             let res = await axios.get("https://drs-proyecto-api.herokuapp.com/users/", config);
-            setUsers((res.data));
+            setUsers((res.data))
+
         }
 
         catch (error) {
@@ -46,7 +45,7 @@ const GetUsers = () => {
 
     }
 
-    if (Users[1]?.name) {
+    if (props.credentials?.token !== "") {
 
         return (
             <div className="view">
@@ -89,4 +88,6 @@ const GetUsers = () => {
 
 }
 
-export default GetUsers;
+export default connect((state)=>({
+    credentials: state.credentials
+}))(GetUsers);

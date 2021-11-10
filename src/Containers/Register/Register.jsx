@@ -57,11 +57,9 @@ const Register = () => {
         };
 
         //Conexion a axios y envio de datos
-        console.log('Sending to Axios', body)
         try {
 
-            let res = await axios.post('https://drs-proyecto-api.herokuapp.com/users/signup', body)
-            localStorage.setItem('loginData', JSON.stringify(res.data.user))
+            let res = await axios.post('https://drs-proyecto-api.herokuapp.com/users/signup', body);
             seterrorMsg('New User Registered')
 
         }

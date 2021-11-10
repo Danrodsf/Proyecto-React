@@ -1,85 +1,97 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import Button from '../Button/Button';
+import React, { useState } from "react";
+import axios from "axios";
+import { LOGIN, LOGOUT } from "../../redux/types";
+import { connect } from "react-redux";
 
-const Login = () => {
+const Login = (props) => {
+  //Hooks
+  const [msgError, setmsgError] = useState("");
+  const [creds, setCreds] = useState({ email: "", password: "" });
 
-    const navigate = useNavigate();
+  //Handlers
+  const inputHandler = (e) => {
+    setCreds({ ...creds, [e.target.name]: e.target.value });
+  };
 
-    //Hooks
-    const [msgError, setmsgError] = useState("");
-    const [creds, setCreds] = useState({ email: '', password: '' });
-    const [login, setLogin] = useState(false);
-    const [info, setInfo] = useState(false);
-    const [profileData, setprofileData] = useState(JSON.parse(localStorage.getItem("loginData")));
+  const logIn = async () => {
+    let body = {
+      email: creds.email,
+      password: creds.password,
+    };
 
-    //Handlers
-    const inputHandler = (e) => {
-
-        setCreds({ ...creds, [e.target.name]: e.target.value });
-
+    try {
+      let res = await axios.post(
+        "https://drs-proyecto-api.herokuapp.com/users/signin",
+        body
+      );
+      let datos = res.data;
+      props.dispatch({ type: LOGIN, payload: datos });
+    } catch (error) {
+      setmsgError("Cannot Log In");
+      return;
     }
+  };
 
-    const logIn = async () => {
+  const loginBtn = () => {
+    let data = {
+      token: 0,
+      user: {},
+    };
 
-        let body = {
+    props.dispatch({ type: LOGIN, payload: data });
+  };
 
-            email: creds.email,
-            password: creds.password
+  const logOut = () => {
+    props.dispatch({ type: LOGOUT });
+  };
 
-        };
-
-        try {
-
-            let res = await axios.post("https://drs-proyecto-api.herokuapp.com/users/signin", body);
-
-            localStorage.setItem("loginData", JSON.stringify(res.data.user));
-            localStorage.setItem("token", (res.data.token));
-
-            setInfo(true);
-
-        }
-
-        catch (error) {
-
-            setmsgError("Cannot Log In");
-            return;
-
-        }
-
-    }
-
-    if (login) {
-
-        if (info) {
-
-            return (
-                <div className="loginView">Logged in as {profileData?.name}<Button view="Logout" url="/" onClick={() => setLogin(false)} /></div>
-
-            )
-
-        } else {
-
-            return (
-                <div className="loginView">
-                    <input type='email' name='email' title='email' onChange={inputHandler} lenght='30' placeholder="email" />
-                    <input type='password' name='password' title='password' onChange={inputHandler} lenght='30' placeholder="Password" />
-                    <div className="button" onClick={() => logIn()}>Login</div>
-                    <div className="error"><h3>{msgError}</h3></div>
-                </div>
-            )
-
-        }
-
+  if (props.credentials?.token !== "") {
+    if (props.credentials?.token !== 0) {
+      return (
+        <div className="loginView">
+          Logged in as {props.credentials?.user?.name}
+          <div classname="button" onClick={() => logOut()}>
+            button
+          </div>
+        </div>
+      );
     } else {
-
-        return (
-            <div className="loginIcon" onClick={() => setLogin(true)}>Login</div>
-        )
-
+      return (
+        <div className="loginView">
+          <input
+            type="email"
+            name="email"
+            title="email"
+            onChange={inputHandler}
+            lenght="30"
+            placeholder="email"
+          />
+          <input
+            type="password"
+            name="password"
+            title="password"
+            onChange={inputHandler}
+            lenght="30"
+            placeholder="Password"
+          />
+          <div className="button" onClick={() => logIn()}>
+            Login
+          </div>
+          <div className="error">
+            <h3>{msgError}</h3>
+          </div>
+        </div>
+      );
     }
-
+  } else {
+    return (
+      <div className="loginIcon" onClick={() => loginBtn()}>
+        Login
+      </div>
+    );
+  }
 };
 
-export default Login;
+export default connect((state) => ({
+  credentials: state.credentials,
+}))(Login);

@@ -1,25 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
-const Profile = () => {
+const Profile = (props) => {
 
-    //Hook 
-    const [profileData, setprofileData] = useState(JSON.parse(localStorage.getItem("loginData")));
-
-    useEffect(() => {
-
-        console.log(profileData)
-
-    }, [])
-
-    if (profileData) {
+    if (props.credentials?.token !== '') {
 
         return (
             <div className="view">
                 <div className="container">
                     <div className="profiles">
-                        <div><p>Name:</p>{profileData.name}</div>
-                        <div><p>Email:</p>{profileData.email}</div>
-                        <div><p>City:</p>{profileData.city}</div>
+                        <div><p>Name:</p>{props.credentials?.user?.name}</div>
+                        <div><p>Email:</p>{props.credentials?.user?.email}</div>
+                        <div><p>City:</p>{props.credentials?.user?.city}</div>
                     </div>
                 </div>
             </div>
@@ -39,4 +31,6 @@ const Profile = () => {
 
 };
 
-export default Profile;
+export default connect((state)=>({
+    credentials: state.credentials
+}))(Profile);
