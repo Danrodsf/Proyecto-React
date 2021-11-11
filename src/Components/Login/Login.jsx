@@ -1,9 +1,13 @@
-import React, { useState } from "react";
 import axios from "axios";
-import { LOGIN, LOGOUT } from "../../redux/types";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { connect } from "react-redux";
+import { SETSTATE, INITSTATE, LOGIN, LOGOUT } from "../../redux/types";
 
 const Login = (props) => {
+
+    const navigate = useNavigate();
+
     //Hooks
     const [msgError, setmsgError] = useState("");
     const [creds, setCreds] = useState({ email: "", password: "" });
@@ -14,13 +18,13 @@ const Login = (props) => {
     };
 
     const loginBtn = () => {
+
         let data = {
-            token: 0,
-            user: {},
+            change: 0
         };
 
-        props.dispatch({ type: LOGIN, payload: data });
-        console.log(props.credentials)
+        props.dispatch({ type: SETSTATE, payload: data });
+
     };
 
     const logIn = async () => {
@@ -46,10 +50,12 @@ const Login = (props) => {
 
     const logOut = () => {
         props.dispatch({ type: LOGOUT });
+        props.dispatch({ type: INITSTATE })
+        navigate('/');
     };
 
-    if (props.credentials?.token !== "") {
-        if (props.credentials?.token !== 0) {
+    if (props.state?.change !== "") {
+        if (props.credentials?.token !== "") {
             return (
                 <div className="loginView">
                     Logged in as {props.credentials?.user?.name}
@@ -97,4 +103,5 @@ const Login = (props) => {
 
 export default connect((state) => ({
     credentials: state.credentials,
+    state: state.state
 }))(Login);

@@ -3,6 +3,19 @@ $orange : rgb(199, 73, 15);
 $lightgray : rgb(27, 27, 27);
 $darkgray: rgb(24, 24, 24);
 
+
+// Scrollbar
+
+::-webkit-scrollbar {
+    width: 0.4em;
+    background: $darkgray;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $orange;
+    border-radius: 1em;
+}
+
 //clases
 
 .view {
@@ -23,6 +36,7 @@ $darkgray: rgb(24, 24, 24);
     align-items:center;
     overflow: auto;
     scrollbar-width: thin;
+    scrollbar-color: $orange $darkgray;
     background-color: $darkgray;
 }
 
@@ -36,5 +50,5 @@ input {
 input:hover {
     transition: 0.3s;
     cursor: pointer;
-    border: 0.2em solid rgb(199, 73, 15);
+    border: 0.2em solid $orange;
 }

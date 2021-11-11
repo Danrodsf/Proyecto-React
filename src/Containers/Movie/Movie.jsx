@@ -24,9 +24,6 @@ const Movie = () => {
         37: "Western"
     }
 
-
-
-
     const [movie, setMovie] = useState(JSON.parse(localStorage.getItem("ChoosenMovie")))
 
     useEffect(() => {

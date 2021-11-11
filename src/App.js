@@ -7,6 +7,7 @@ import Profile from './Containers/Profile/Profile';
 import Movies from './Containers/Movies/Movies';
 import Movie from './Containers/Movie/Movie';
 import Users from './Containers/Users/Users';
+import Orders from './Containers/Orders/Orders';
 import './App.scss';
 import './scss/main.scss';
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/movies" element={<Movies />} />
           <Route path="/users" element={<Users />} />
           <Route path="/movie" element={<Movie />} />
+          <Route path="/orders" element={<Orders />} />
 
         </Routes>
 

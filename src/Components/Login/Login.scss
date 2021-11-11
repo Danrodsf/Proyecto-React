@@ -1,8 +1,8 @@
 .loginView {
     height: 100%;
-    width: 100%;
+    width: 80%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     align-items: center;
     max-width: 50em;
     color: white;
@@ -15,6 +15,7 @@
     border-radius: 0.1em;
     transition: 0.3s;
     color: white;
+    margin-left: 3em;
 }
 
 .Btn:hover {
