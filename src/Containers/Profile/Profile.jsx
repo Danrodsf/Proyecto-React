@@ -1,42 +1,76 @@
 import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { UPDATE_USER } from '../../redux/types';
 import axios from 'axios'
 
 const Profile = (props) => {
 
-    const update = () => {
-        const edit = document.querySelectorAll('.edit');
-        const hidden = document.querySelector('.btn2');
+    //Hooks
+    const [creds, setCreds] = useState({
+        name: props.credentials.user.name,
+        email: props.credentials.user.email,
+        city: props.credentials.user.city,
+        password: props.credentials.user.password,
+        password2: props.credentials.user.password 
+    });
 
-        edit.forEach(element => {
-            element.removeAttribute('readOnly')
-            element.classList.remove("hide");
-        });
+    const [semaforo, setSemaforo] = useState(false);
+    const [errorMsg, seterrorMsg] = useState('');
 
-        hidden.classList.remove('hidden');
+    //Handlers
+    const profileHandler = (e) => {
+
+        setCreds({ ...creds, [e.target.name]: e.target.value })
 
     }
 
-    const update2 = () => {
-        const edit = document.querySelectorAll('.edit');
-        const hidden = document.querySelector('.btn2');
+    const edit = async () => {
+        //Comprobar errores en los datos
 
-        const body = {
+        if (creds.password2 !== creds.password) {
 
-            name: edit[0].value,
-            email: edit[1].value,
-            city: edit[2].value
+            return seterrorMsg('Password does not match');
 
         }
 
-        edit.forEach(element => {
-            element.setAttribute('readOnly', 'readOnly')
-            element.classList.add("hide");
-        });
+        //Generacion del body
+        let body = {
 
-        hidden.classList.add('hidden');
+            name: creds.name,
+            email: creds.email,
+            city: creds.city,
+            password: creds.password
 
-    }
+        };
+
+            //RECUPERAMOS TOKEN
+        let token = props.credentials.token;
+
+    //CREAMOS LA CONFIGURACIÓN DEL HEADER QUE SE VA A MANDAR
+        let config = {
+
+        headers: { Authorization: `Bearer ${token}` }
+
+    };
+
+        //Conexion a axios y envio de datos
+        try {
+
+            let res = await axios.put(`https://drs-proyecto-api.herokuapp.com/users/${props.credentials.user.id}`, body, config);
+            seterrorMsg('User updated')
+            let datos = res.data;
+            props.dispatch({ type: UPDATE_USER, payload: datos });
+
+        }
+        catch (error) {
+
+            console.log(error);
+            seterrorMsg('Unable to update User');
+            return;
+
+        }
+
+    };
 
     if (props.credentials?.user.admin) {
 
@@ -55,21 +89,40 @@ const Profile = (props) => {
 
     } else if (props.credentials?.token !== '' && props.credentials?.token !== 0) {
 
-        return (
-            <div className="view">
-                <div className="container">
-                    <div className="profiles">
-                        <div>PERFIL DE USUARIO</div>
-                        <div><p>Name:</p><input type="text" readOnly="readOnly" className="edit hide" placeholder={props.credentials?.user?.name}></input></div>
-                        <div><p>Email:</p><input type="text" readOnly="readOnly" className="edit hide" placeholder={props.credentials?.user?.email}></input></div>
-                        <div><p>City:</p><input type="text" readOnly="readOnly" className="edit hide" placeholder={props.credentials?.user?.city}></input></div>
-                        <div><p>Registered since:</p>{props.credentials?.user?.createdAt}</div>
-                        <div className="btn1" onClick={() => update()}>Update Info</div>
-                        <div className="btn2 hidden" onClick={() => update2()}>Save</div>
+        if (semaforo) {
+            return (
+                <div className="view">
+                    <div className="container">
+                        <div className="profiles">
+                            <div>PERFIL DE USUARIO</div>
+                            <div><p>Name:</p><input type="text" name='name' placeholder={creds?.name} onChange={profileHandler}/></div>
+                            <div><p>Email:</p><input type="text" name='email' placeholder={creds?.email} onChange={profileHandler}/></div>
+                            <div><p>City:</p><input type="text" name='city' placeholder={creds?.city} onChange={profileHandler}/></div>
+                            <div><p>Password:</p><input type="password" name='password' placeholder={creds?.password} onChange={profileHandler}/></div>
+                            <div><p>Repeat Password:</p><input type="password" name='password2' placeholder={creds?.password} onChange={profileHandler}/></div>
+                            <div className="btn" onClick={()=>edit()}>Save</div>
+                            <div>{errorMsg}</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div className="view">
+                    <div className="container">
+                        <div className="profiles">
+                            <div>PERFIL DE USUARIO</div>
+                            <div><p>Name:</p>{props.credentials?.user?.name}</div>
+                            <div><p>Email:</p>{props.credentials?.user?.email}</div>
+                            <div><p>City:</p>{props.credentials?.user?.city}</div>
+                            <div><p>Registered since:</p>{props.credentials?.user?.createdAt}</div>
+                            <div className="btn" onClick={() => setSemaforo(true)}>Update Info</div>
+                            <div>{errorMsg}</div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
 
     } else {
         return (
