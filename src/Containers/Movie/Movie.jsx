@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
-const Movie = () => {
+const Movie = (props) => {
 
     let genre = {
         28: "Action",
@@ -25,37 +27,68 @@ const Movie = () => {
     }
 
     const [movie, setMovie] = useState(JSON.parse(localStorage.getItem("ChoosenMovie")))
+    const [msgError, setmsgError] = useState("");
 
-    useEffect(() => {
+    let token = props.credentials.token;
+    let config = {
 
-        console.log(movie);
+        headers: { Authorization: `Bearer ${token}` }
 
-    }, [])
+    };
 
-    const order = () => {
+    const createOrder = async () => {
+        console.log(props.credentials.user.id)
+        console.log(movie.id)
+        let body = {
+            userId: props.credentials.user.id,
+            movieId: movie.id
+        }
 
-        console.log(`you have rented ${movie.id}`)
+        try {
 
+            let res = await axios.post("https://drs-proyecto-api.herokuapp.com/orders", body, config);
+            setmsgError(res.data.error || res.data.message)
+            console.log(msgError)
+
+        } catch (error) {
+
+            setmsgError(msgError);
+            return;
+
+        }
     }
 
-    return (
-        <div className="view">
-            <div className="movie_container">
-                <div className="movie">
-                    <img alt={movie.id} className="poster" src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} />
-                    <h2>{JSON.stringify(movie.title)}</h2>
-                    {movie.genre_ids.map(gen => (
-                        <div key={gen} className="genres">
-                            <p>{genre[gen]}</p>
-                        </div>
-                    ))}
-                    <p>Release Date: {JSON.stringify(movie.release_date)}</p>
-                    <p>Vote Avg: {JSON.stringify(movie.vote_average)}</p>
-                    <button onClick={() => order()}>Rent</button>
+    if (props.credentials?.user?.name) {
+        return (
+            <div className="view">
+                <div className="movie_container">
+                    <div className="movie">
+                        <h2>{JSON.stringify(movie.title)}</h2>
+                        <p>{movie.genre}</p>
+                        <p>{movie.cast}</p>
+                        <p>{movie.city}</p>
+                        <button onClick={() => createOrder()}>Rent</button>
+                        <div>{msgError}</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return (
+            <div className="view">
+                <div className="movie_container">
+                    <div className="movie">
+                        <h2>{JSON.stringify(movie.title)}</h2>
+                        <p>Release Date: {JSON.stringify(movie.release_date)}</p>
+                        <p>Vote Avg: {JSON.stringify(movie.vote_average)}</p>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
 };
 
-export default Movie;
+export default connect((state) => ({
+    credentials: state.credentials
+}))(Movie);

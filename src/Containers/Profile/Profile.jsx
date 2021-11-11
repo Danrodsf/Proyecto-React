@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { SETSTATE, INITSTATE, UPDATE_USER } from '../../redux/types';
+import { SETSTATE, UPDATE_USER } from '../../redux/types';
 import axios from 'axios'
 
 const Profile = (props) => {
@@ -15,7 +15,6 @@ const Profile = (props) => {
         setCreds({ ...creds, [e.target.name]: e.target.value })
 
     }
-
 
     useEffect(() => {
 
@@ -77,7 +76,6 @@ const Profile = (props) => {
 
         catch (error) {
 
-            console.log(error);
             seterrorMsg('Unable to update User');
             return;
 
@@ -87,7 +85,7 @@ const Profile = (props) => {
 
     if (props.credentials?.user?.admin && props.state?.change !== '') {
 
-        if (props.state?.change == 1) {
+        if (props.state?.change === 1) {
 
             return (
                 <div className="view">
@@ -126,7 +124,7 @@ const Profile = (props) => {
 
     } else if (props.credentials?.token !== '' && props.state?.change !== '') {
 
-        if (props.state?.change == 1) {
+        if (props.state?.change === 1) {
             return (
                 <div className="view">
                     <div className="container">

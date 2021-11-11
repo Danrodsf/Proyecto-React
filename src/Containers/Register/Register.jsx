@@ -60,13 +60,13 @@ const Register = () => {
         try {
 
             let res = await axios.post('https://drs-proyecto-api.herokuapp.com/users/signup', body);
+            setCreds(res.data);
             seterrorMsg('New User Registered')
 
         }
         catch (error) {
 
-            console.log(error);
-            seterrorMsg('Unable to register new User');
+            seterrorMsg(creds.error || creds.message);
             return;
 
         }

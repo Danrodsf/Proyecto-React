@@ -19,12 +19,6 @@ const GetOrders = (props) => {
 
     }, [])
 
-    useEffect(() => {
-
-        console.log(orders)
-
-    })
-
     let token = props.credentials.token;
     let config = {
 
@@ -41,7 +35,7 @@ const GetOrders = (props) => {
 
         } catch (error) {
 
-            setmsgError("Cannot get Orders");
+            setmsgError(orders.error || orders.message);
             return;
 
         }
@@ -58,8 +52,11 @@ const GetOrders = (props) => {
                         return <div key={order.id} className="orders">
                             <h4>Order Number: {JSON.stringify(order.id)}</h4>
                             <p>User ID: {JSON.stringify(order.userId)}</p>
-                            <p>Email: {JSON.stringify(order.movieId)}</p>
-                            <p>Register Date: {JSON.stringify(order.createdAt)}</p>
+                            <p>Movie ID: {JSON.stringify(order.movieId)}</p>
+                            <p>Rented Movie: {JSON.stringify(order.movie.title)}</p>
+                            <p>City: {JSON.stringify(order.user.city)}</p>
+                            <p>Rent Date: {JSON.stringify(order.rentDate)}</p>
+                            <p>Return Date: {JSON.stringify(order.returnDate)}</p>
                         </div>
                     })}
 

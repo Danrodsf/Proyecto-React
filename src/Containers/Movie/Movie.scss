@@ -8,13 +8,16 @@
     align-items:center;
     overflow: auto;
     scrollbar-width: thin;
-    background-color:rgb(15, 15, 15);
+    background-color: $darkgray;
 }
 
 .movie {
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    border:0.2em solid $orange;
+    border-radius: 0.5em;
 }
 
 .poster {
