@@ -3,38 +3,31 @@ import { UPDATEFILTER } from "../../redux/types";
 import { useLocation } from "react-router";
 import { connect } from "react-redux";
 
-const SearchBar = (props) => {
+const Select = (props) => {
 
     let location = useLocation();
 
     //hooks
     const [search, setSearch] = useState('');
+    const [select, setSelect] = useState('id');
+
 
     //handler
     const searchHandler = (e) => {
         setSearch(e.target.value)
     }
 
+    const selectHandler = (e) => {
+        setSelect(e.target.value);
+    };
+
     const submit = () => {
-
-        switch (location.pathname) {
-
-            case '/movies':
-                let filteredMovies = props.data?.movies?.filter((movie) => movie?.title?.toLowerCase().startsWith(search));
-                props.dispatch({ type: UPDATEFILTER, payload: filteredMovies })
-                break;
-            case '/users':
-                let filteredUsers = props.data?.users?.filter((user) => user?.name?.toLowerCase().startsWith(search));
-                props.dispatch({ type: UPDATEFILTER, payload: filteredUsers })
-                break;
-            case '/orders':
-                let filteredOrders = props.data?.orders?.filter((order) => (order?.user?.name?.toLowerCase().startsWith(search) || order.user.name.toLowerCase().startsWith(search)));
-                props.dispatch({ type: UPDATEFILTER, payload: filteredOrders })
-                break;
-
-            default:
-                break;
+        let data = {
+            filter: search,
+            select: select
         }
+
+        props.dispatch({ type: UPDATEFILTER, payload: data })
 
     }
 
@@ -52,6 +45,13 @@ const SearchBar = (props) => {
 
                 <div>
                     <input type="text" name='data' onChange={searchHandler} value={search} placeholder="Search" />
+                    <select name="select" value={select} onChange={selectHandler}>
+                        <option value="id">Id</option>
+                        <option value="title">Title</option>
+                        <option value="genre">Genre</option>
+                        <option value="cast">Cast</option>
+                        <option value="city">City</option>
+                    </select>
                     <div className="btn" onClick={() => submit()}>Search Movies</div>
                     <div className="btn" onClick={() => reset()}>Reset</div>
                 </div>
@@ -64,7 +64,11 @@ const SearchBar = (props) => {
 
                 <div>
                     <input type="text" name='data' onChange={searchHandler} value={search} placeholder="Search" />
-                    <div className="btn" onClick={() => submit()}>Search Users</div>
+                    <select name="select" value={select} onChange={selectHandler}>
+                        <option value="userid">UserId</option>
+                        <option value="city">City</option>
+                    </select>
+                    <div className="btn" onClick={() => submit()}>Search Movies</div>
                     <div className="btn" onClick={() => reset()}>Reset</div>
                 </div>
 
@@ -76,7 +80,11 @@ const SearchBar = (props) => {
 
                 <div>
                     <input type="text" name='data' onChange={searchHandler} value={search} placeholder="Search" />
-                    <div className="btn" onClick={() => submit()}>Search Orders</div>
+                    <select name="select" value={select} onChange={selectHandler}>
+                        <option value="id">Id</option>
+                        <option value="userId">UserId</option>
+                    </select>
+                    <div className="btn" onClick={() => submit()}>Search Movies</div>
                     <div className="btn" onClick={() => reset()}>Reset</div>
                 </div>
 
@@ -90,4 +98,4 @@ const SearchBar = (props) => {
 
 export default connect((state) => ({
     data: state.data
-}))(SearchBar);
+}))(Select);

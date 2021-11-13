@@ -54,6 +54,18 @@ const GetOrders = (props) => {
 
     }
 
+    const getOrderById = async () => {
+        let id = props.data.filter
+        let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/orders/${id}`);
+        setOrders(res.data);
+    }
+
+    const getOrderByUserId = async () => {
+        let userId = props.data.filter
+        let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/orders/userId/${userId}`);
+        setOrders(res.data);
+    }
+
     if (props.credentials?.user?.admin) {
 
         if (orders[0]?.id) {

@@ -56,6 +56,18 @@ const GetUsers = (props) => {
 
     }
 
+    const getUsersById = async () => {
+        let id = props.data.filter
+        let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/users/${id}`);
+        setUsers(res.data);
+    }
+
+    const getUsersByCity = async () => {
+        let city = props.data.filter
+        let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/users/${city}`);
+        setUsers(res.data);
+    }
+
     if (props.credentials?.user?.admin) {
 
         if (users[0]?.id) {
