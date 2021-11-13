@@ -59,15 +59,17 @@ const GetMovies = (props) => {
             } else {
 
                 setMovies(props.data.movies)
+                setmsgError('')
             }
 
-        } else if (props.data.filter[0]) {
+        } else if (props.data.filter[0].title) {
 
             setMovies(props.data.filter)
 
         } else {
 
             setMovies(props.data.movies)
+            setmsgError('')
         }
 
     }, [props.data.filter, props.data.movies])
@@ -84,7 +86,6 @@ const GetMovies = (props) => {
         } catch (error) {
 
             setmsgError("Cannot get Movies");
-            return;
 
         }
 
@@ -92,33 +93,81 @@ const GetMovies = (props) => {
 
     const getMovieById = async (id) => {
 
-        let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/movies/${id}`, token);
-        setMovies(res.data);
-        console.log(res.data);
+        try {
+
+            let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/movies/${id}`, token);
+            setMovies([res.data]);
+            setmsgError(`Movie Found`)
+
+
+        } catch (error) {
+
+            setmsgError(`No movie Found`)
+
+        }
+
     }
 
     const getMovieByTitle = async (title) => {
-        let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/movies/title/${title}`, token);
-        setMovies(res.data);
-        console.log(res.data);
+        try {
+
+            let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/movies/name/${title}`, token);
+            setMovies(res.data);
+            console.log(res.data);
+
+        } catch (error) {
+
+            setmsgError(`${error}`)
+
+        }
+
     }
 
     const getMovieByCast = async (cast) => {
-        let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/movies/cast/${cast}`, token);
-        setMovies(res.data);
-        console.log(res.data);
+
+        try {
+
+            let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/movies/cast/${cast}`, token);
+            setMovies(res.data);
+            setmsgError(`Found ${res.data.length} movies`)
+
+        } catch (error) {
+
+            setmsgError(`No movie Found`)
+
+        }
+
     }
 
     const getMovieByGenre = async (genre) => {
-        let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/movies/genre/${genre}`, token);
-        setMovies(res.data);
-        console.log(res.data);
+
+        try {
+
+            let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/movies/genre/${genre}`, token);
+            setMovies(res.data);
+            setmsgError(`Found ${res.data.length} movies`)
+
+        } catch (error) {
+
+            setmsgError(`No movie Found`)
+
+        }
+
     }
 
     const getMovieByCity = async (city) => {
-        let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/movies/city/${city}`, token);
-        setMovies(res.data);
-        console.log(res.data);
+
+        try {
+
+            let res = await axios.get(`https://drs-proyecto-api.herokuapp.com/movies/city/${city}`, token);
+            setMovies(res.data);
+            setmsgError(`Found ${res.data.length} movies`)
+
+        } catch (error) {
+
+            setmsgError(`No movie Found`)
+
+        }
     }
 
     const chooseMovie = (chosenMovie) => {
@@ -134,16 +183,19 @@ const GetMovies = (props) => {
             <div className="view">
                 <div className="container">
                     <div className="movieNav">
-                        <Select name="Filter by:" />
+                        <Select />
+                        <div>{msgError}</div>
                     </div>
                     <div className="movieInfo">
                         {movies.map((movie) => {
+
                             return (
                                 <div key={movie.id} className="movies">
                                     <h3 className="posters" onClick={() => chooseMovie(movie)}>{movie.title}</h3>
                                 </div>
                             )
                         })}
+
                     </div>
                 </div>
             </div>

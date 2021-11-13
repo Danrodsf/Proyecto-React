@@ -3,6 +3,8 @@
 @import 'Components/Header/Header.scss';
 @import 'Components/Login/Login.scss';
 @import 'Components/Button/Button.scss';
+@import 'Components/SearchBar/SearchBar.scss';
+@import 'Components/Select/Select.scss';
 @import 'Containers/Home/Home.scss';
 @import 'Containers/Movie/Movie.scss';
 @import 'Containers/Movies/Movies.scss';
@@ -11,6 +13,9 @@
 @import 'Containers/Users/Users.scss';
 @import 'Containers/Orders/Orders.scss';
 
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
 .App {
   text-align: center;
+  font-family: 'Open Sans',serif; 
 }

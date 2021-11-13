@@ -9,6 +9,7 @@ const SearchBar = (props) => {
 
     //hooks
     const [search, setSearch] = useState('');
+    const [msgError, setMsgError] = useState('');
 
     //handler
     const searchHandler = (e) => {
@@ -20,16 +21,51 @@ const SearchBar = (props) => {
         switch (location.pathname) {
 
             case '/movies':
+
                 let filteredMovies = props.data?.movies?.filter((movie) => movie?.title?.toLowerCase().startsWith(search));
-                props.dispatch({ type: UPDATEFILTER, payload: filteredMovies })
+                if (filteredMovies.length !== 0) {
+
+                    props.dispatch({ type: UPDATEFILTER, payload: filteredMovies })
+                    setMsgError(`Found ${filteredMovies.length} results`)
+
+                } else {
+
+                    setMsgError('No movie found')
+                    console.log(msgError)
+
+                }
+
                 break;
+
             case '/users':
+
                 let filteredUsers = props.data?.users?.filter((user) => user?.name?.toLowerCase().startsWith(search));
-                props.dispatch({ type: UPDATEFILTER, payload: filteredUsers })
+                if (filteredUsers.length !== 0) {
+
+                    props.dispatch({ type: UPDATEFILTER, payload: filteredUsers })
+                    setMsgError(`Found ${filteredUsers.length} results`)
+
+                } else {
+
+                    setMsgError(`No User found`)
+
+                }
                 break;
+
             case '/orders':
-                let filteredOrders = props.data?.orders?.filter((order) => (order?.user?.name?.toLowerCase().startsWith(search) || order.user.name.toLowerCase().startsWith(search)));
-                props.dispatch({ type: UPDATEFILTER, payload: filteredOrders })
+
+                let filteredOrders = props.data?.orders?.filter((order) => (order?.user?.name?.toLowerCase().startsWith(search) || order.movie.title.toLowerCase().startsWith(search)));
+                if (filteredOrders.length !== 0) {
+
+                    props.dispatch({ type: UPDATEFILTER, payload: filteredOrders })
+                    setMsgError(`Found ${filteredOrders.length} results`)
+
+                } else {
+
+                    setMsgError('No Order found')
+
+                }
+
                 break;
 
             default:
@@ -41,6 +77,8 @@ const SearchBar = (props) => {
     const reset = () => {
 
         props.dispatch({ type: UPDATEFILTER, payload: '' });
+        setSearch('');
+        setMsgError('');
 
     };
 
@@ -50,7 +88,8 @@ const SearchBar = (props) => {
 
             return (
 
-                <div>
+                <div className="searchBar">
+                    <div>{msgError}</div>
                     <input type="text" name='data' onChange={searchHandler} value={search} placeholder="Search" />
                     <div className="btn" onClick={() => submit()}>Search Movies</div>
                     <div className="btn" onClick={() => reset()}>Reset</div>
@@ -62,7 +101,8 @@ const SearchBar = (props) => {
 
             return (
 
-                <div>
+                <div className="searchBar">
+                    <div>{msgError}</div>
                     <input type="text" name='data' onChange={searchHandler} value={search} placeholder="Search" />
                     <div className="btn" onClick={() => submit()}>Search Users</div>
                     <div className="btn" onClick={() => reset()}>Reset</div>
@@ -74,9 +114,10 @@ const SearchBar = (props) => {
 
             return (
 
-                <div>
+                <div className="searchBar">
+                    <div>{msgError}</div>
                     <input type="text" name='data' onChange={searchHandler} value={search} placeholder="Search" />
-                    <div className="btn" onClick={() => submit()}>Search Orders</div>
+                    <div className="btn" onClick={() => submit()}>Search Users</div>
                     <div className="btn" onClick={() => reset()}>Reset</div>
                 </div>
 

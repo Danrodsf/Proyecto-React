@@ -34,6 +34,8 @@ const Select = (props) => {
     const reset = () => {
 
         props.dispatch({ type: UPDATEFILTER, payload: '' });
+        setSearch('');
+        setSelect('');
 
     };
 
@@ -43,7 +45,7 @@ const Select = (props) => {
 
             return (
 
-                <div>
+                <div className="select">
                     <input type="text" name='data' onChange={searchHandler} value={search} placeholder="Search" />
                     <select name="select" value={select} onChange={selectHandler}>
                         <option value="id">Id</option>
@@ -52,7 +54,7 @@ const Select = (props) => {
                         <option value="cast">Cast</option>
                         <option value="city">City</option>
                     </select>
-                    <div className="btn" onClick={() => submit()}>Search Movies</div>
+                    <div className="btn" onClick={() => submit()}>Search</div>
                     <div className="btn" onClick={() => reset()}>Reset</div>
                 </div>
 
@@ -62,13 +64,13 @@ const Select = (props) => {
 
             return (
 
-                <div>
+                <div className="select">
                     <input type="text" name='data' onChange={searchHandler} value={search} placeholder="Search" />
                     <select name="select" value={select} onChange={selectHandler}>
-                        <option value="userid">UserId</option>
+                        <option value="id">Id</option>
                         <option value="city">City</option>
                     </select>
-                    <div className="btn" onClick={() => submit()}>Search Movies</div>
+                    <div className="btn" onClick={() => submit()}>Search</div>
                     <div className="btn" onClick={() => reset()}>Reset</div>
                 </div>
 
@@ -78,13 +80,13 @@ const Select = (props) => {
 
             return (
 
-                <div>
+                <div className="select">
                     <input type="text" name='data' onChange={searchHandler} value={search} placeholder="Search" />
                     <select name="select" value={select} onChange={selectHandler}>
                         <option value="id">Id</option>
                         <option value="userId">UserId</option>
                     </select>
-                    <div className="btn" onClick={() => submit()}>Search Movies</div>
+                    <div className="btn" onClick={() => submit()}>Search</div>
                     <div className="btn" onClick={() => reset()}>Reset</div>
                 </div>
 

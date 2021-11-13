@@ -1,8 +1,7 @@
 import SearchBar from "../SearchBar/SearchBar";
-import { connect } from "react-redux";
 import { useLocation } from 'react-router-dom';
 
-const Footer = (props) => {
+const Footer = () => {
 
     let location = useLocation();
 
@@ -37,4 +36,4 @@ const Footer = (props) => {
 
 };
 
-export default connect()(Footer);
+export default Footer;

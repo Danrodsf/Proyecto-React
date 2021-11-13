@@ -1,14 +1,17 @@
 // Paleta de Colores
 $orange : rgb(199, 73, 15);
-$lightgray : rgb(27, 27, 27);
-$darkgray: rgb(24, 24, 24);
+$darkorange : rgb(149, 53, 9);
+$lightgray : rgb(41, 41, 41);
+$darkgray: rgb(19, 19, 19);
+$graygradient: linear-gradient(0deg, rgb(19, 19, 19) 0%, rgba(41,41,41,1) 100%);
+$orangegradient: linear-gradient(0deg, rgb(149, 53, 9) 0%, rgba(199, 73, 15) 100%);
 
 
 // Scrollbar
 
 ::-webkit-scrollbar {
     width: 0.4em;
-    background: $darkgray;
+    background: $graygradient;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -22,7 +25,7 @@ $darkgray: rgb(24, 24, 24);
     display: flex;
     justify-content:center;
     align-items: center;
-    background-color: $darkgray;
+    background: $graygradient;
     color:white;
 }
 
@@ -36,8 +39,8 @@ $darkgray: rgb(24, 24, 24);
     align-items:center;
     overflow: auto;
     scrollbar-width: thin;
-    scrollbar-color: $orange $darkgray;
-    background-color: $darkgray;
+    scrollbar-color: $orange $graygradient;
+    background: linear-gradient(0deg, rgb(19, 19, 19) 0%, rgba(41,41,41,1) 100%);
 }
 
 input {
@@ -45,6 +48,8 @@ input {
     height: 2em;
     margin:1em;
     transition: 0.3s;
+    outline: none;
+    border-radius: 0.3em;
 }
 
 input:hover {
