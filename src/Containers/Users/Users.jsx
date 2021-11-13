@@ -1,40 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { UPDATEUSERS } from '../../redux/types';
 import loading from '../../img/loading.gif'
 
 const GetUsers = (props) => {
 
     //HOOKS
-    const [Users, setUsers] = useState([]);
+    const [users, setUsers] = useState([]);
     const [msgError, setmsgError] = useState("");
+
+    //UseEffect
 
     useEffect(() => {
 
-        setTimeout(() => {
-
-            getAllUsers();
-
-        }, 500);
+        getAllUsers();
 
     }, [])
 
-    //RECUPERAMOS TOKEN
-    let token = props.credentials.token;
+    useEffect(() => {
 
-    //CREAMOS LA CONFIGURACIÓN DEL HEADER QUE SE VA A MANDAR
-    let config = {
+        if (props.data.filter !== '') {
 
-        headers: { Authorization: `Bearer ${token}` }
+            setUsers(props.data.filter)
 
-    };
+        } else {
+
+            setUsers(props.data.users)
+        }
+
+    }, [props.data.filter, props.data.users])
 
     const getAllUsers = async () => {
+
+        let token = props.credentials.token;
+        let config = {
+
+            headers: { Authorization: `Bearer ${token}` }
+
+        };
 
         try {
 
             let res = await axios.get("https://drs-proyecto-api.herokuapp.com/users/", config);
             setUsers((res.data))
+
+            props.dispatch({ type: UPDATEUSERS, payload: res.data });
 
         }
 
@@ -47,22 +58,37 @@ const GetUsers = (props) => {
 
     if (props.credentials?.user?.admin) {
 
-        return (
-            <div className="view">
-                <div className="container">
-                    {Users.map((user) => {
+        if (users[0]?.id) {
 
-                        return <div key={user.id} className="users">
-                            <h4>user Number: {JSON.stringify(user.id)}</h4>
-                            <h2>{JSON.stringify(user.name)}</h2>
-                            <p>email: {JSON.stringify(user.email)}</p>
-                            <p>Register Date: {JSON.stringify(user.createdAt)}</p>
-                        </div>
-                    })}
+            return (
+                <div className="view">
+                    <div className="container">
+                        {users.map((user) => {
 
+                            return <div key={user.id} className="users">
+                                <h4>User Number: {JSON.stringify(user?.id)}</h4>
+                                <h2>{JSON.stringify(user?.name)}</h2>
+                                <p>Email: {JSON.stringify(user?.email)}</p>
+                                <p>Register Date: {JSON.stringify(user?.createdAt)}</p>
+                                <p>Last Update: {JSON.stringify(user?.updatedAt)}</p>
+                            </div>
+                        })}
+
+                    </div>
                 </div>
-            </div>
-        )
+            )
+
+        } else {
+
+            return (
+                <div className="view">
+                    <div className="container">
+                        <img src={loading} alt="Loading" />
+                    </div>
+                </div>
+            )
+
+        }
 
     } else if (msgError) {
 
@@ -79,7 +105,7 @@ const GetUsers = (props) => {
         return (
             <div className="view">
                 <div className="container">
-                    <img src={loading} alt="Loading" />
+                    You need authorization to show Users
                 </div>
             </div>
         )
@@ -89,5 +115,6 @@ const GetUsers = (props) => {
 }
 
 export default connect((state) => ({
-    credentials: state.credentials
+    credentials: state.credentials,
+    data: state.data
 }))(GetUsers);
