@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { UPDATEMOVIES } from '../../redux/types';
 import React, { useState, useEffect } from 'react';
-import loading from '../../img/loading.gif'
 import Select from '../../Components/Select/Select'
 
 const GetMovies = (props) => {
@@ -20,7 +19,10 @@ const GetMovies = (props) => {
 
     useEffect(() => {
 
-        getAllMovies();
+        setTimeout(() => {
+            getAllMovies();
+        }, 2000);
+
 
     }, [])
 
@@ -62,7 +64,7 @@ const GetMovies = (props) => {
                 setmsgError('')
             }
 
-        } else if (props.data.filter[0].title) {
+        } else if (props.data.filter[0]) {
 
             setMovies(props.data.filter)
 
@@ -226,7 +228,40 @@ const GetMovies = (props) => {
         return (
             <div className="view">
                 <div className="container">
-                    <img src={loading} alt="Loading" />
+                    <div class="dank-ass-loader">
+                        <div class="row">
+                            <div class="arrow up outer outer-18"></div>
+                            <div class="arrow down outer outer-17"></div>
+                            <div class="arrow up outer outer-16"></div>
+                            <div class="arrow down outer outer-15"></div>
+                            <div class="arrow up outer outer-14"></div>
+                        </div>
+                        <div class="row">
+                            <div class="arrow up outer outer-1"></div>
+                            <div class="arrow down outer outer-2"></div>
+                            <div class="arrow up inner inner-6"></div>
+                            <div class="arrow down inner inner-5"></div>
+                            <div class="arrow up inner inner-4"></div>
+                            <div class="arrow down outer outer-13"></div>
+                            <div class="arrow up outer outer-12"></div>
+                        </div>
+                        <div class="row">
+                            <div class="arrow down outer outer-3"></div>
+                            <div class="arrow up outer outer-4"></div>
+                            <div class="arrow down inner inner-1"></div>
+                            <div class="arrow up inner inner-2"></div>
+                            <div class="arrow down inner inner-3"></div>
+                            <div class="arrow up outer outer-11"></div>
+                            <div class="arrow down outer outer-10"></div>
+                        </div>
+                        <div class="row">
+                            <div class="arrow down outer outer-5"></div>
+                            <div class="arrow up outer outer-6"></div>
+                            <div class="arrow down outer outer-7"></div>
+                            <div class="arrow up outer outer-8"></div>
+                            <div class="arrow down outer outer-9"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

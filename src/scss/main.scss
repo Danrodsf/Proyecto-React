@@ -5,7 +5,7 @@ $lightgray : rgb(41, 41, 41);
 $darkgray: rgb(19, 19, 19);
 $graygradient: linear-gradient(0deg, rgb(19, 19, 19) 0%, rgba(41,41,41,1) 100%);
 $orangegradient: linear-gradient(0deg, rgb(149, 53, 9) 0%, rgba(199, 73, 15) 100%);
-
+$orangegradientinverted: linear-gradient(180deg, rgb(149, 53, 9) 0%, rgba(199, 73, 15) 100%);
 
 // Scrollbar
 
@@ -25,7 +25,8 @@ $orangegradient: linear-gradient(0deg, rgb(149, 53, 9) 0%, rgba(199, 73, 15) 100
     display: flex;
     justify-content:center;
     align-items: center;
-    background: $graygradient;
+    background-image: url(../img/diagmonds.png);
+    background-repeat: repeat;
     color:white;
 }
 
@@ -40,7 +41,7 @@ $orangegradient: linear-gradient(0deg, rgb(149, 53, 9) 0%, rgba(199, 73, 15) 100
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: $orange $graygradient;
-    background: linear-gradient(0deg, rgb(19, 19, 19) 0%, rgba(41,41,41,1) 100%);
+
 }
 
 input {
