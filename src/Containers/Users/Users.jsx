@@ -3,7 +3,6 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { UPDATEUSERS } from '../../redux/types';
 import Select from '../../Components/Select/Select';
-import loading from '../../img/loading.gif'
 
 const GetUsers = (props) => {
 
@@ -106,6 +105,38 @@ const GetUsers = (props) => {
 
     }
 
+
+
+    const deleteUser = async (id) => {
+
+        try {
+
+            await axios.delete(`https://drs-proyecto-api.herokuapp.com/users/${id}`, token);
+            setmsgError('User Deleted');
+
+        } catch (error) {
+
+            setmsgError(`${error}`)
+
+        }
+
+    }
+
+    const deleteAlert = (e) => {
+
+        if (window.confirm('Are you sure you wish to delete this User?')) {
+
+            deleteUser(e);
+            getAllUsers();
+
+        } else {
+
+            return;
+
+        }
+
+    }
+
     if (props.credentials?.user?.admin) {
 
         if (users[0]?.id) {
@@ -121,12 +152,14 @@ const GetUsers = (props) => {
                             {users.map((user) => {
 
                                 return <div key={user.id} className="users">
-                                    <h4>User Number: {JSON.stringify(user?.id)}</h4>
                                     <h2>{JSON.stringify(user?.name)}</h2>
+                                    <h4>User Number: {JSON.stringify(user?.id)}</h4>
                                     <p>Email: {JSON.stringify(user?.email)}</p>
                                     <p>Register Date: {JSON.stringify(user?.createdAt)}</p>
                                     <p>Last Update: {JSON.stringify(user?.updatedAt)}</p>
+                                    <div className="btn" onClick={() => deleteAlert(user.id)}>Delete</div>
                                 </div>
+
                             })}
 
                         </div>

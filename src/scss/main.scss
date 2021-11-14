@@ -58,3 +58,18 @@ input:hover {
     cursor: pointer;
     border: 0.2em solid $orange;
 }
+
+.btn {
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 0.1em;
+transition: 0.3s;
+color: white;
+}
+
+.btn:hover {
+    transition: 0.3s;
+    color: $darkgray;
+    cursor: pointer;
+}

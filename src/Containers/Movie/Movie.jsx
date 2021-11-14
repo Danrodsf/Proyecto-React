@@ -24,7 +24,7 @@ const Movie = (props) => {
         try {
 
             let res = await axios.post("https://drs-proyecto-api.herokuapp.com/orders", body, config);
-            setmsgError(res.data.error || res.data.message)
+            setmsgError('Movie Rented')
 
         } catch (error) {
 

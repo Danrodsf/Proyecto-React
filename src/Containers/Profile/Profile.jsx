@@ -108,8 +108,8 @@ const Profile = (props) => {
                 <div className="view">
                     <div className="container">
                         <div className="profiles">
-                            <div>PERFIL DE ADMINISTRADOR</div>
-                            <div><p>Name:</p>{props.credentials?.user?.name}</div>
+                            <h2>PERFIL DE ADMINISTRADOR</h2>
+                            <h3><p>Name:</p>{props.credentials?.user?.name}</h3>
                             <div><p>Email:</p>{props.credentials?.user?.email}</div>
                             <div><p>City:</p>{props.credentials?.user?.city}</div>
                             <div><p>Registered since:</p>{props.credentials?.user?.createdAt}</div>

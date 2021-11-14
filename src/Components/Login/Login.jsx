@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { connect } from "react-redux";
 import { SETSTATE, INITSTATE, LOGIN, LOGOUT } from "../../redux/types";
+import Button from "../Button/Button";
 
 const Login = (props) => {
 
@@ -33,6 +34,7 @@ const Login = (props) => {
             email: creds.email,
             password: creds.password,
         };
+
         try {
             let res = await axios.post(
                 "https://drs-proyecto-api.herokuapp.com/users/signin",
@@ -51,6 +53,7 @@ const Login = (props) => {
     const logOut = () => {
         props.dispatch({ type: LOGOUT });
         props.dispatch({ type: INITSTATE })
+        setmsgError('')
         navigate('/');
     };
 
@@ -59,9 +62,10 @@ const Login = (props) => {
             return (
                 <div className="loginView">
                     Logged in as {props.credentials?.user?.name}
-                    <div className="Btn" onClick={() => logOut()}>
+                    <div className="btn" onClick={() => logOut()}>
                         LOG OUT
                     </div>
+                    <Button view="PROFILE" url="/profile" />
                 </div>
             );
         } else {
@@ -83,7 +87,7 @@ const Login = (props) => {
                         lenght="30"
                         placeholder="Password"
                     />
-                    <div className="Btn" onClick={() => logIn()}>
+                    <div className="btn" onClick={() => logIn()}>
                         LOG IN
                     </div>
                     <div className="error">
@@ -94,7 +98,7 @@ const Login = (props) => {
         }
     } else {
         return (
-            <div className="Btn" onClick={() => loginBtn()}>
+            <div className="btn" onClick={() => loginBtn()}>
                 LOG IN
             </div>
         );

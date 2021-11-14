@@ -23,7 +23,7 @@ const Button = (props) => {
     }
 
     return (
-        <div className="button" onClick={() => next()}>{props.view}</div>
+        <div className="btn" onClick={() => next()}>{props.view}</div>
     )
 };
 

@@ -10,14 +10,12 @@ const Header = (props) => {
                 <div className="hcontainer">
                     <div className="navbar">
                         <Button view="HOME" url="/" />
-                        <Button view="REGISTER" url="/register" />
                         <Button view="MOVIES" url="/movies" />
                         <Button view="USERS" url="/users" />
                         <Button view="ORDERS" url="/orders" />
                     </div>
                     <div className="navlogin">
                         <Login />
-                        <Button view="PROFILE" url="/profile" />
                     </div>
 
                 </div>
@@ -29,12 +27,10 @@ const Header = (props) => {
                 <div className="hcontainer">
                     <div className="navbar">
                         <Button view="HOME" url="/" />
-                        <Button view="REGISTER" url="/register" />
                         <Button view="MOVIES" url="/movies" />
                     </div>
                     <div className="navlogin">
                         <Login />
-                        <Button view="PROFILE" url="/profile" />
                     </div>
                 </div>
             </div>

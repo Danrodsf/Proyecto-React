@@ -12,18 +12,22 @@
         display: flex;
         
         .navbar {
+
             display: flex;
             flex-wrap: wrap;
             justify-content:flex-start;
             align-items: center;
-            width: 60%;
+            width: 70%;
+            .btn {
+                margin: 0 0.5em 0 0.5em;
+            }
         }
         
         .navlogin {
             display: flex;
-            justify-content:flex-start;
+            justify-content:center;
             align-items:center;
-            width: 40%;
+            width: 30%;
         }
     }
 }

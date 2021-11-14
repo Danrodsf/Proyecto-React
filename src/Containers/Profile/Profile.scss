@@ -3,11 +3,15 @@
     flex-direction: column;
     justify-content:space-evenly;
     align-items:center;
-    width: 30em;
+    text-align: center;
+    width: 50em;
     height: 50em;
-    border:0.3em solid;
+    border:0.2em solid $orange;
+    border-radius: 0.5em;
+    .btn {
+        width: 10em;
+        background-color: $orange;
+        border-radius: 1em;
+    }
 }
 
-.btn {
-    cursor: pointer;
-}

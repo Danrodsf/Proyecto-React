@@ -1,15 +1,4 @@
-.button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.btn {
     height: 2em;
     width: 5em;
-    color: white;
-    transition: 0.3s;
-}
-
-.button:hover {
-    transition: 0.3s;
-    color: rgb(15, 15, 15);
-    cursor: pointer;
 }

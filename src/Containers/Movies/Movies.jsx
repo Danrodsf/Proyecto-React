@@ -170,6 +170,7 @@ const GetMovies = (props) => {
             setmsgError(`No movie Found`)
 
         }
+
     }
 
     const chooseMovie = (chosenMovie) => {
@@ -179,29 +180,89 @@ const GetMovies = (props) => {
 
     }
 
+    const deleteMovie = async (id) => {
+
+        try {
+
+            await axios.delete(`https://drs-proyecto-api.herokuapp.com/movies/${id}`, token);
+            setmsgError('Movie Deleted');
+
+        } catch (error) {
+
+            setmsgError(`${error}`)
+
+        }
+
+    }
+
+    const deleteAlert = (e) => {
+
+        if (window.confirm('Are you sure you wish to delete this Movie?')) {
+
+            deleteMovie(e);
+            getAllMovies();
+
+        } else {
+
+            return;
+
+        }
+
+    }
+
     if (movies[0]?.title) { //el " ? " sirve para que no se detenga mientras no encuentre el array
 
-        return (
-            <div className="view">
-                <div className="container">
-                    <div className="movieNav">
-                        <Select />
-                        <div>{msgError}</div>
-                    </div>
-                    <div className="movieInfo">
-                        {movies.map((movie) => {
+        if (props.credentials?.user?.admin) {
 
-                            return (
-                                <div key={movie.id} className="movies">
-                                    <h3 className="posters" onClick={() => chooseMovie(movie)}>{movie.title}</h3>
-                                </div>
-                            )
-                        })}
+            return (
+                <div className="view">
+                    <div className="container">
+                        <div className="movieNav">
+                            <Select />
+                            <div>{msgError}</div>
+                        </div>
+                        <div className="movieInfo">
+                            {movies.map((movie) => {
 
+                                return (
+                                    <div key={movie.id} className="movies">
+                                        <h3 className="posters" onClick={() => chooseMovie(movie)}>{movie.title}</h3>
+                                        <div className="btn" onClick={() => deleteAlert(movie.id)}>Delete</div>
+                                    </div>
+                                )
+                            })}
+
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+
+        } else {
+
+            return (
+                <div className="view">
+                    <div className="container">
+                        <div className="movieNav">
+                            <Select />
+                            <div>{msgError}</div>
+                        </div>
+                        <div className="movieInfo">
+                            {movies.map((movie) => {
+
+                                return (
+                                    <div key={movie.id} className="movies">
+                                        <h3 className="posters" onClick={() => chooseMovie(movie)}>{movie.title}</h3>
+                                    </div>
+                                )
+                            })}
+
+                        </div>
+                    </div>
+                </div>
+            )
+
+        }
+
 
     } else if (msgError) {
 

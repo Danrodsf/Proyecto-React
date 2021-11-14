@@ -2,7 +2,6 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { UPDATEORDERS } from '../../redux/types';
-import loading from '../../img/loading.gif'
 import Select from '../../Components/Select/Select';
 
 const GetOrders = (props) => {
@@ -103,6 +102,36 @@ const GetOrders = (props) => {
 
     }
 
+    const deleteOrder = async (id) => {
+
+        try {
+
+            await axios.delete(`https://drs-proyecto-api.herokuapp.com/orders/${id}`, token);
+            setmsgError('Order Deleted');
+
+        } catch (error) {
+
+            setmsgError(`${error}`)
+
+        }
+
+    }
+
+    const deleteAlert = (e) => {
+
+        if (window.confirm('Are you sure you wish to delete this order?')) {
+
+            deleteOrder(e);
+            getAllOrders();
+
+        } else {
+
+            return;
+
+        }
+
+    }
+
     if (props.credentials?.user?.admin) {
 
         if (orders[0]?.id) {
@@ -118,14 +147,17 @@ const GetOrders = (props) => {
                             {orders.map((order) => {
 
                                 return <div key={order.id} className="orders">
-                                    <h4>Order Number: {JSON.stringify(order?.id)}</h4>
-                                    <p>User Name: {JSON.stringify(order?.user?.name)}</p>
+                                    <div>
+                                        <h4>Order Number: {JSON.stringify(order?.id)}</h4>
+                                        <p>User Name: {JSON.stringify(order?.user?.name)}</p>
+                                    </div>
                                     <p>User ID: {JSON.stringify(order?.userId)}</p>
                                     <p>Rented Movie: {JSON.stringify(order?.movie?.title)}</p>
                                     <p>Movie ID: {JSON.stringify(order?.movieId)}</p>
                                     <p>City: {JSON.stringify(order.user?.city)}</p>
                                     <p>Rent Date: {JSON.stringify(order?.rentDate)}</p>
                                     <p>Return Date: {JSON.stringify(order?.returnDate)}</p>
+                                    <div className="btn" onClick={() => deleteAlert(order.id)}>Delete</div>
                                 </div>
 
                             })}
