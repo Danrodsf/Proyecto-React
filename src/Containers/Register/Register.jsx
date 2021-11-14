@@ -22,7 +22,7 @@ const Register = () => {
 
     });
 
-    const [errorMsg, seterrorMsg] = useState('');
+    const [msgError, setmsgError] = useState('');
 
     //Handlers
     const userHandler = (e) => {
@@ -37,7 +37,7 @@ const Register = () => {
 
         if (creds.password2 !== creds.password) {
 
-            return seterrorMsg('Password does not match');
+            return setmsgError('Password does not match');
 
         }
 
@@ -61,13 +61,12 @@ const Register = () => {
 
             let res = await axios.post('https://drs-proyecto-api.herokuapp.com/users/signup', body);
             setCreds(res.data);
-            seterrorMsg('New User Registered')
+            setmsgError('New User Registered')
 
         }
         catch (error) {
 
-            seterrorMsg(creds.error || creds.message);
-            return;
+            setmsgError(error.message);
 
         }
 
@@ -172,7 +171,7 @@ const Register = () => {
                     <div className='btn' onClick={() => reg()}>
                         Register
                     </div>
-                    <div className='error'>{errorMsg} </div>
+                    <div className='error'>{msgError} </div>
                 </div>
             </div>
         </div>

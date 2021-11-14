@@ -35,9 +35,11 @@ const Movie = (props) => {
     }
 
     if (props.credentials?.user?.name) {
+
         return (
+
             <div className="view">
-                <div className="movie_container">
+                <div className="container">
                     <div className="movie">
                         <h2>{JSON.stringify(movie.title)}</h2>
                         <p>{movie.genre}</p>
@@ -49,14 +51,17 @@ const Movie = (props) => {
                 </div>
             </div>
         )
+
     } else {
+
         return (
             <div className="view">
-                <div className="movie_container">
+                <div className="container">
                     <div className="movie">
                         <h2>{JSON.stringify(movie.title)}</h2>
-                        <p>Release Date: {JSON.stringify(movie.release_date)}</p>
-                        <p>Vote Avg: {JSON.stringify(movie.vote_average)}</p>
+                        <p>{movie.genre}</p>
+                        <p>{movie.cast}</p>
+                        <p>{movie.city}</p>
                     </div>
                 </div>
             </div>

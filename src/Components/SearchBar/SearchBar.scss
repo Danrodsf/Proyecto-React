@@ -1,7 +1,17 @@
 .searchBar {
-    width: 40%;
+    height: 100%;
+    width: 20%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    .btn {
+        width: 10em;
+    }
+    input {
+        border: 0.2em solid $orange;
+    }
+    input:hover {
+        border: 0.2em solid $darkgray;
+    }
 }

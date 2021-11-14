@@ -173,6 +173,12 @@ const GetMovies = (props) => {
 
     }
 
+    const addNewMovie = async () => {
+
+        navigate("/newmovie");
+
+    }
+
     const chooseMovie = (chosenMovie) => {
 
         localStorage.setItem("ChoosenMovie", JSON.stringify(chosenMovie));
@@ -218,6 +224,7 @@ const GetMovies = (props) => {
                 <div className="view">
                     <div className="container">
                         <div className="movieNav">
+                            <div className="btn" onClick={() => addNewMovie()}>Add New Movie</div>
                             <Select />
                             <div>{msgError}</div>
                         </div>

@@ -1,0 +1,26 @@
+.newMovieInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 60%;
+    border:0.2em solid $orange;
+    border-radius: 0.5em;
+    
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        justify-content:space-evenly;
+        align-items: center;
+        height: 80%;
+        width: 30%;
+        
+    }
+    .btn {
+        width: 10em;
+        background-color: $orange;
+        border-radius: 1em;
+    }
+}
+

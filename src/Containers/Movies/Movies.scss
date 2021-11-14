@@ -4,6 +4,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    .btn {
+        display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: 0.3s;
+            background-color: $orange;
+            border-radius: 0.3em;
+            height: 2em;
+            width: 10em;
+    }
 }
 
 .movieInfo {
@@ -37,7 +48,7 @@
         .btn {
         width: 50%;
         background-color: $orange;
-        border-radius: 1em;
+        border-radius: 0.3em;
         }
 }
 

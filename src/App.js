@@ -5,6 +5,7 @@ import Home from './Containers/Home/Home';
 import Register from './Containers/Register/Register';
 import Profile from './Containers/Profile/Profile';
 import Movies from './Containers/Movies/Movies';
+import NewMovie from './Containers/NewMovie/NewMovie';
 import Movie from './Containers/Movie/Movie';
 import Users from './Containers/Users/Users';
 import Orders from './Containers/Orders/Orders';
@@ -22,9 +23,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/newmovie" element={<NewMovie />} />
           <Route path="/movies" element={<Movies />} />
-          <Route path="/users" element={<Users />} />
           <Route path="/movie" element={<Movie />} />
+          <Route path="/users" element={<Users />} />
           <Route path="/orders" element={<Orders />} />
 
         </Routes>
