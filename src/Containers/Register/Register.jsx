@@ -31,9 +31,9 @@ const Register = () => {
 
     }
 
-    //funciones
+
     const reg = async () => {
-        //Comprobar errores en los datos
+
 
         if (creds.password2 !== creds.password) {
 
@@ -41,7 +41,7 @@ const Register = () => {
 
         }
 
-        //Generacion del body
+
         let body = {
 
             name: creds.name,
@@ -56,7 +56,7 @@ const Register = () => {
 
         };
 
-        //Conexion a axios y envio de datos
+
         try {
 
             let res = await axios.post('https://drs-proyecto-api.herokuapp.com/users/signup', body);
@@ -70,7 +70,6 @@ const Register = () => {
 
         }
 
-        //Recepción y guardado de datos
         setTimeout(() => {
 
             navigate('/profile');

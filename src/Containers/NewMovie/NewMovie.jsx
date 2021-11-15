@@ -39,7 +39,7 @@ const NewMovie = (props) => {
 
         try {
 
-            let res = await axios.post("https://drs-proyecto-api.herokuapp.com/movies", body, token);
+            await axios.post("https://drs-proyecto-api.herokuapp.com/movies", body, token);
             setmsgError('Movie Rented')
 
         } catch (error) {

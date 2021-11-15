@@ -2,12 +2,19 @@ import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { SETSTATE, UPDATE_USER } from '../../redux/types';
 import axios from 'axios'
+import Orders from '../../Components/Orders/Orders';
 
 const Profile = (props) => {
 
+    let token = {
+
+        headers: { Authorization: `Bearer ${props.credentials.token}` }
+
+    };
+
     //Hooks
     const [creds, setCreds] = useState(props.credentials.user);
-    const [errorMsg, seterrorMsg] = useState('');
+    const [msgError, setmsgError] = useState('')
 
     //Handlers
     const profileHandler = (e) => {
@@ -37,7 +44,7 @@ const Profile = (props) => {
         };
 
         props.dispatch({ type: SETSTATE, payload: data });
-        seterrorMsg('')
+        setmsgError('')
 
     }
 
@@ -52,18 +59,10 @@ const Profile = (props) => {
         };
 
 
-        let token = props.credentials.token;
-        let config = {
-
-            headers: { Authorization: `Bearer ${token}` }
-
-        };
-
-        // 
         try {
 
-            let res = await axios.put(`https://drs-proyecto-api.herokuapp.com/users/${props.credentials.user.id}`, body, config);
-            seterrorMsg(res.data.message)
+            let res = await axios.put(`https://drs-proyecto-api.herokuapp.com/users/${props.credentials.user.id}`, body, token);
+            setmsgError(res.data.message)
 
             setTimeout(() => {
 
@@ -76,7 +75,7 @@ const Profile = (props) => {
 
         catch (error) {
 
-            seterrorMsg('Unable to update User');
+            setmsgError('Unable to update User');
             return;
 
         }
@@ -96,7 +95,10 @@ const Profile = (props) => {
                             <div><p>Email:</p><input type="text" name='email' placeholder={creds?.email} onChange={profileHandler} /></div>
                             <div><p>City:</p><input type="text" name='city' placeholder={creds?.city} onChange={profileHandler} /></div>
                             <div className="btn" onClick={() => edit()}>Save</div>
-                            <div>{errorMsg}</div>
+                            <div>{msgError}</div>
+                        </div>
+                        <div className="profileOrders">
+                            <Orders />
                         </div>
                     </div>
                 </div>
@@ -109,13 +111,16 @@ const Profile = (props) => {
                     <div className="container">
                         <div className="profiles">
                             <h2>PERFIL DE ADMINISTRADOR</h2>
-                            <h3><p>Name:</p>{props.credentials?.user?.name}</h3>
+                            <h3>{props.credentials?.user?.name}</h3>
                             <div><p>Email:</p>{props.credentials?.user?.email}</div>
                             <div><p>City:</p>{props.credentials?.user?.city}</div>
                             <div><p>Registered since:</p>{props.credentials?.user?.createdAt}</div>
                             <div><p>Last Update:</p>{props.credentials?.user?.updatedAt}</div>
                             <div className="btn" onClick={() => editBtn()}>Update Info</div>
-                            <div>{errorMsg}</div>
+                            <div>{msgError}</div>
+                        </div>
+                        <div className="profileOrders">
+                            <Orders />
                         </div>
                     </div>
                 </div>
@@ -134,7 +139,7 @@ const Profile = (props) => {
                             <div><p>Email:</p><input type="text" name='email' placeholder={creds?.email} onChange={profileHandler} /></div>
                             <div><p>City:</p><input type="text" name='city' placeholder={creds?.city} onChange={profileHandler} /></div>
                             <div className="btn" onClick={() => edit()}>Save</div>
-                            <div>{errorMsg}</div>
+                            <div>{msgError}</div>
                         </div>
                     </div>
                 </div>
@@ -153,7 +158,10 @@ const Profile = (props) => {
                             <div><p>Registered since:</p>{props.credentials?.user?.createdAt}</div>
                             <div><p>Last Update:</p>{props.credentials?.user?.updatedAt}</div>
                             <div className="btn" onClick={() => editBtn()}>Update Info</div>
-                            <div>{errorMsg}</div>
+                            <div>{msgError}</div>
+                        </div>
+                        <div className="profileOrders">
+                            <Orders />
                         </div>
                     </div>
                 </div>

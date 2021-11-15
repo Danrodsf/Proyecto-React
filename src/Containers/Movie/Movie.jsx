@@ -4,26 +4,27 @@ import { connect } from 'react-redux';
 
 const Movie = (props) => {
 
-    const [movie, setMovie] = useState(JSON.parse(localStorage.getItem("ChoosenMovie")))
-    const [msgError, setmsgError] = useState("");
+    let token = {
 
-    let token = props.credentials.token;
-    let config = {
-
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${props.credentials.token}` }
 
     };
+
+    const [movie, setMovie] = useState(JSON.parse(localStorage.getItem("ChoosenMovie")))
+    const [msgError, setmsgError] = useState("");
 
     const createOrder = async () => {
 
         let body = {
+
             userId: props.credentials.user.id,
             movieId: movie.id
+
         }
 
         try {
 
-            let res = await axios.post("https://drs-proyecto-api.herokuapp.com/orders", body, config);
+            await axios.post("https://drs-proyecto-api.herokuapp.com/orders", body, token);
             setmsgError('Movie Rented')
 
         } catch (error) {

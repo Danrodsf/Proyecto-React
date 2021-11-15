@@ -146,20 +146,22 @@ const GetOrders = (props) => {
                         <div className="orderInfo">
                             {orders.map((order) => {
 
-                                return <div key={order.id} className="orders">
-                                    <div>
-                                        <h4>Order Number: {JSON.stringify(order?.id)}</h4>
-                                        <p>User Name: {JSON.stringify(order?.user?.name)}</p>
+                                return (
+                                    <div key={order.id} className="orders">
+                                        <div>
+                                            <h4>Order Number: {JSON.stringify(order?.id)}</h4>
+                                            <p>User Name: {JSON.stringify(order?.user?.name)}</p>
+                                        </div>
+                                        <p>User ID: {JSON.stringify(order?.userId)}</p>
+                                        <p>Rented Movie: {JSON.stringify(order?.movie?.title)}</p>
+                                        <p>Movie ID: {JSON.stringify(order?.movieId)}</p>
+                                        <p>City: {JSON.stringify(order.user?.city)}</p>
+                                        <p>Rent Date: {JSON.stringify(order?.rentDate)}</p>
+                                        <p>Return Date: {JSON.stringify(order?.returnDate)}</p>
+                                        <div className="btn" onClick={() => deleteAlert(order.id)}>Delete</div>
                                     </div>
-                                    <p>User ID: {JSON.stringify(order?.userId)}</p>
-                                    <p>Rented Movie: {JSON.stringify(order?.movie?.title)}</p>
-                                    <p>Movie ID: {JSON.stringify(order?.movieId)}</p>
-                                    <p>City: {JSON.stringify(order.user?.city)}</p>
-                                    <p>Rent Date: {JSON.stringify(order?.rentDate)}</p>
-                                    <p>Return Date: {JSON.stringify(order?.returnDate)}</p>
-                                    <div className="btn" onClick={() => deleteAlert(order.id)}>Delete</div>
-                                </div>
 
+                                )
                             })}
                         </div>
                     </div>
@@ -171,38 +173,38 @@ const GetOrders = (props) => {
             return (
                 <div className="view">
                     <div className="container">
-                        <div class="dank-ass-loader">
-                            <div class="row">
-                                <div class="arrow up outer outer-18"></div>
-                                <div class="arrow down outer outer-17"></div>
-                                <div class="arrow up outer outer-16"></div>
-                                <div class="arrow down outer outer-15"></div>
-                                <div class="arrow up outer outer-14"></div>
+                        <div className="dank-ass-loader">
+                            <div className="row">
+                                <div className="arrow up outer outer-18"></div>
+                                <div className="arrow down outer outer-17"></div>
+                                <div className="arrow up outer outer-16"></div>
+                                <div className="arrow down outer outer-15"></div>
+                                <div className="arrow up outer outer-14"></div>
                             </div>
-                            <div class="row">
-                                <div class="arrow up outer outer-1"></div>
-                                <div class="arrow down outer outer-2"></div>
-                                <div class="arrow up inner inner-6"></div>
-                                <div class="arrow down inner inner-5"></div>
-                                <div class="arrow up inner inner-4"></div>
-                                <div class="arrow down outer outer-13"></div>
-                                <div class="arrow up outer outer-12"></div>
+                            <div className="row">
+                                <div className="arrow up outer outer-1"></div>
+                                <div className="arrow down outer outer-2"></div>
+                                <div className="arrow up inner inner-6"></div>
+                                <div className="arrow down inner inner-5"></div>
+                                <div className="arrow up inner inner-4"></div>
+                                <div className="arrow down outer outer-13"></div>
+                                <div className="arrow up outer outer-12"></div>
                             </div>
-                            <div class="row">
-                                <div class="arrow down outer outer-3"></div>
-                                <div class="arrow up outer outer-4"></div>
-                                <div class="arrow down inner inner-1"></div>
-                                <div class="arrow up inner inner-2"></div>
-                                <div class="arrow down inner inner-3"></div>
-                                <div class="arrow up outer outer-11"></div>
-                                <div class="arrow down outer outer-10"></div>
+                            <div className="row">
+                                <div className="arrow down outer outer-3"></div>
+                                <div className="arrow up outer outer-4"></div>
+                                <div className="arrow down inner inner-1"></div>
+                                <div className="arrow up inner inner-2"></div>
+                                <div className="arrow down inner inner-3"></div>
+                                <div className="arrow up outer outer-11"></div>
+                                <div className="arrow down outer outer-10"></div>
                             </div>
-                            <div class="row">
-                                <div class="arrow down outer outer-5"></div>
-                                <div class="arrow up outer outer-6"></div>
-                                <div class="arrow down outer outer-7"></div>
-                                <div class="arrow up outer outer-8"></div>
-                                <div class="arrow down outer outer-9"></div>
+                            <div className="row">
+                                <div className="arrow down outer outer-5"></div>
+                                <div className="arrow up outer outer-6"></div>
+                                <div className="arrow down outer outer-7"></div>
+                                <div className="arrow up outer outer-8"></div>
+                                <div className="arrow down outer outer-9"></div>
                             </div>
                         </div>
                     </div>

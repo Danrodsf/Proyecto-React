@@ -42,7 +42,6 @@ const Login = (props) => {
             );
             let datos = res.data;
             props.dispatch({ type: LOGIN, payload: datos });
-            console.log(props)
 
         } catch (error) {
             setmsgError("Cannot Log In");
