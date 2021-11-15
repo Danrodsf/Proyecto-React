@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { SETSTATE, UPDATE_USER } from '../../redux/types';
+import ProfOrders from '../../Components/ProfOrders/ProfOrders'
 import axios from 'axios'
-import Orders from '../../Components/Orders/Orders';
 
 const Profile = (props) => {
 
@@ -98,7 +98,7 @@ const Profile = (props) => {
                             <div>{msgError}</div>
                         </div>
                         <div className="profileOrders">
-                            <Orders />
+                            <ProfOrders />
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@ const Profile = (props) => {
                             <div>{msgError}</div>
                         </div>
                         <div className="profileOrders">
-                            <Orders />
+                            <ProfOrders />
                         </div>
                     </div>
                 </div>
@@ -140,6 +140,9 @@ const Profile = (props) => {
                             <div><p>City:</p><input type="text" name='city' placeholder={creds?.city} onChange={profileHandler} /></div>
                             <div className="btn" onClick={() => edit()}>Save</div>
                             <div>{msgError}</div>
+                        </div>
+                        <div className="profileOrders">
+                            <ProfOrders />
                         </div>
                     </div>
                 </div>
@@ -161,7 +164,7 @@ const Profile = (props) => {
                             <div>{msgError}</div>
                         </div>
                         <div className="profileOrders">
-                            <Orders />
+                            <ProfOrders />
                         </div>
                     </div>
                 </div>

@@ -22,17 +22,26 @@ const Movie = (props) => {
 
         }
 
-        try {
+        if (props.credentials.user.city !== movie.city) {
 
-            await axios.post("https://drs-proyecto-api.herokuapp.com/orders", body, token);
-            setmsgError('Movie Rented')
+            setmsgError('This movie is not available to rent in your city')
 
-        } catch (error) {
+        } else {
 
-            setmsgError(msgError);
-            return;
+            try {
+
+                await axios.post("https://drs-proyecto-api.herokuapp.com/orders", body, token);
+                setmsgError('Movie Rented')
+
+            } catch (error) {
+
+                setmsgError(msgError);
+                return;
+
+            }
 
         }
+
     }
 
     if (props.credentials?.user?.name) {

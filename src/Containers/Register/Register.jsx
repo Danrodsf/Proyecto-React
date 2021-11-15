@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
-const Register = () => {
+const Register = (props) => {
 
     let navigate = useNavigate();
 
@@ -81,101 +82,119 @@ const Register = () => {
     // // Esto es para checkeo de Input y va antes del 1er input
     // <pre>{JSON.stringify(creds, null, 2)}</pre> 
 
-    return (
-        <div className='view'>
-            <div className="container">
-                <div className="registerInfo">
-                    <div className="inputs">
-                        Name: <input
-                            type='text'
-                            name='name'
-                            title='name'
-                            placeholder='Name'
-                            lenght='30'
-                            onChange={userHandler}
-                        />
-                        Surname:<input
-                            type='text'
-                            name='surname'
-                            title='surname'
-                            placeholder='Surname'
-                            lenght='30'
-                            onChange={userHandler}
-                        />
-                        DNI:<input
-                            type='text'
-                            name='dni'
-                            title='dni'
-                            placeholder='DNI'
-                            lenght='10'
-                            onChange={userHandler}
-                        />
-                        Email:<input
-                            type='email'
-                            name='email'
-                            title='email'
-                            placeholder='Email'
-                            lenght='30'
-                            onChange={userHandler}
-                        />
-                        Address:<input
-                            type='text'
-                            name='address'
-                            title='address'
-                            placeholder='Address'
-                            lenght='30'
-                            onChange={userHandler}
-                        />
-                        City:<input
-                            type='text'
-                            name='city'
-                            title='city'
-                            placeholder='City'
-                            lenght='30'
-                            onChange={userHandler}
-                        />
-                        Postal Code:<input
-                            type='number'
-                            name='postalcode'
-                            title='postalcode'
-                            placeholder='PostalCode'
-                            lenght='30'
-                            onChange={userHandler}
-                        />
-                        Phone:<input
-                            type='text'
-                            name='phone'
-                            title='phone'
-                            placeholder='Phone'
-                            lenght='12'
-                            onChange={userHandler}
-                        />
-                        Password:<input
-                            type='text'
-                            name='password'
-                            title='password'
-                            placeholder='Password'
-                            lenght='30'
-                            onChange={userHandler}
-                        />
-                        Repeat Password<input
-                            type='text'
-                            name='password2'
-                            title='password2'
-                            placeholder='Repeat Password'
-                            lenght='30'
-                            onChange={userHandler}
-                        />
-                    </div>
-                    <div className='btn' onClick={() => reg()}>
-                        Register
-                    </div>
-                    <div className='error'>{msgError} </div>
+    if (props.credentials.token !== '') {
+
+        navigate('/');
+
+        return (
+            <div className='view'>
+                <div className="container">
+                    <div>You are already registered. Redirecting...</div>
                 </div>
             </div>
-        </div>
-    );
+        )
 
-};
+    } else {
 
-export default Register;
+        return (
+            <div className='view'>
+                <div className="container">
+                    <div className="registerInfo">
+                        <div className="inputs">
+                            Name: <input
+                                type='text'
+                                name='name'
+                                title='name'
+                                placeholder='Name'
+                                lenght='30'
+                                onChange={userHandler}
+                            />
+                            Surname:<input
+                                type='text'
+                                name='surname'
+                                title='surname'
+                                placeholder='Surname'
+                                lenght='30'
+                                onChange={userHandler}
+                            />
+                            DNI:<input
+                                type='text'
+                                name='dni'
+                                title='dni'
+                                placeholder='DNI'
+                                lenght='10'
+                                onChange={userHandler}
+                            />
+                            Email:<input
+                                type='email'
+                                name='email'
+                                title='email'
+                                placeholder='Email'
+                                lenght='30'
+                                onChange={userHandler}
+                            />
+                            Address:<input
+                                type='text'
+                                name='address'
+                                title='address'
+                                placeholder='Address'
+                                lenght='30'
+                                onChange={userHandler}
+                            />
+                            City:<input
+                                type='text'
+                                name='city'
+                                title='city'
+                                placeholder='City'
+                                lenght='30'
+                                onChange={userHandler}
+                            />
+                            Postal Code:<input
+                                type='number'
+                                name='postalcode'
+                                title='postalcode'
+                                placeholder='PostalCode'
+                                lenght='30'
+                                onChange={userHandler}
+                            />
+                            Phone:<input
+                                type='text'
+                                name='phone'
+                                title='phone'
+                                placeholder='Phone'
+                                lenght='12'
+                                onChange={userHandler}
+                            />
+                            Password:<input
+                                type='text'
+                                name='password'
+                                title='password'
+                                placeholder='Password'
+                                lenght='30'
+                                onChange={userHandler}
+                            />
+                            Repeat Password<input
+                                type='text'
+                                name='password2'
+                                title='password2'
+                                placeholder='Repeat Password'
+                                lenght='30'
+                                onChange={userHandler}
+                            />
+                        </div>
+                        <div className='btn' onClick={() => reg()}>
+                            Register
+                        </div>
+                        <div className='error'>{msgError} </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+    };
+
+}
+
+export default connect((state) => ({
+    credentials: state.credentials
+}))(Register);
