@@ -1,200 +1,146 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { connect } from 'react-redux';
-import axios from 'axios';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import FormInput from "../../Components/FormInputs/FormInputs";
+import axios from "axios";
 
 const Register = (props) => {
+  let navigate = useNavigate();
 
-    let navigate = useNavigate();
+  //Hooks
+  const [creds, setCreds] = useState({
+    name: null,
+    email: null,
+    city: null,
+    password: null,
+    confirmPassword: null,
+  });
 
-    //Hooks
-    const [creds, setCreds] = useState({
+  const [msgError, setmsgError] = useState("");
 
-        name: null,
-        surname: null,
-        dni: null,
-        email: null,
-        address: null,
-        city: null,
-        postalcode: null,
-        phone: null,
-        password: null,
-        password2: null,
+  //Handlers
+  const inputHandler = (e) => {
+    setCreds({ ...creds, [e.target.name]: e.target.value });
+  };
 
-    });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    reg();
+  };
 
-    const [msgError, setmsgError] = useState('');
+  const inputs = [
+    {
+      id: 1,
+      name: "name",
+      type: "text",
+      placeholder: "Username",
+      errorMessage:
+        "Username should be 3-16 characters and shouldn't include any special character!",
+      label: "Username",
+      pattern: "^[A-Za-z0-9]{3,16}$",
+      required: true,
+    },
+    {
+      id: 2,
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      errorMessage: "It should be a valid email address!",
+      label: "Email",
+      required: true,
+    },
+    {
+      id: 3,
+      name: "city",
+      type: "text",
+      placeholder: "City",
+      errorMessage:
+        "We are currently available only in Valencia, Madrid or Zaragoza",
+      label: "City",
+      pattern: "Valencia|valencia|Madrid|madrid|Zaragoza|zaragoza",
+      required: true,
+    },
+    {
+      id: 4,
+      name: "password",
+      type: "text",
+      placeholder: "Password",
+      errorMessage:
+        "Password should be 4-20 characters and include at least 1 letter and 1 number!",
+      label: "Password",
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{4,20}$`,
+      required: true,
+    },
+    {
+      id: 5,
+      name: "confirmPassword",
+      type: "password",
+      placeholder: "Confirm Password",
+      errorMessage: "Passwords don't match!",
+      label: "Confirm Password",
+      pattern: creds.password,
+      required: true,
+    },
+  ];
 
-    //Handlers
-    const userHandler = (e) => {
+  const reg = async () => {
+    let body = {
+      name: creds.name,
+      email: creds.email,
+      city: creds.city,
+      password: creds.password,
+    };
 
-        setCreds({ ...creds, [e.target.name]: e.target.value })
-
+    try {
+      let res = await axios.post(
+        "https://drs-proyecto-api.herokuapp.com/users/signup",
+        body
+      );
+      setCreds(res.data);
+      setmsgError("New User Registered");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      setmsgError("Cannot Register User");
     }
+  };
 
+  if (props.credentials.token !== "") {
+    navigate("/");
 
-    const reg = async () => {
-
-
-        if (creds.password2 !== creds.password) {
-
-            return setmsgError('Password does not match');
-
-        }
-
-
-        let body = {
-
-            name: creds.name,
-            surname: creds.surname,
-            dni: creds.dni,
-            email: creds.email,
-            address: creds.address,
-            city: creds.city,
-            postalcode: creds.postalcode,
-            phone: creds.phone,
-            password: creds.password
-
-        };
-
-
-        try {
-
-            let res = await axios.post('https://drs-proyecto-api.herokuapp.com/users/signup', body);
-            setCreds(res.data);
-            setmsgError('New User Registered')
-
-        }
-        catch (error) {
-
-            setmsgError(error.message);
-
-        }
-
-        setTimeout(() => {
-
-            navigate('/profile');
-
-        }, 2000);
-
-    };
-
-    // // Esto es para checkeo de Input y va antes del 1er input
-    // <pre>{JSON.stringify(creds, null, 2)}</pre> 
-
-    if (props.credentials.token !== '') {
-
-        navigate('/');
-
-        return (
-            <div className='view'>
-                <div className="container">
-                    <div>You are already registered. Redirecting...</div>
-                </div>
-            </div>
-        )
-
-    } else {
-
-        return (
-            <div className='view'>
-                <div className="container">
-                    <div className="registerInfo">
-                        <div className="inputs">
-                            Name: <input
-                                type='text'
-                                name='name'
-                                title='name'
-                                placeholder='Name'
-                                lenght='30'
-                                onChange={userHandler}
-                            />
-                            Surname:<input
-                                type='text'
-                                name='surname'
-                                title='surname'
-                                placeholder='Surname'
-                                lenght='30'
-                                onChange={userHandler}
-                            />
-                            DNI:<input
-                                type='text'
-                                name='dni'
-                                title='dni'
-                                placeholder='DNI'
-                                lenght='10'
-                                onChange={userHandler}
-                            />
-                            Email:<input
-                                type='email'
-                                name='email'
-                                title='email'
-                                placeholder='Email'
-                                lenght='30'
-                                onChange={userHandler}
-                            />
-                            Address:<input
-                                type='text'
-                                name='address'
-                                title='address'
-                                placeholder='Address'
-                                lenght='30'
-                                onChange={userHandler}
-                            />
-                            City:<input
-                                type='text'
-                                name='city'
-                                title='city'
-                                placeholder='City'
-                                lenght='30'
-                                onChange={userHandler}
-                            />
-                            Postal Code:<input
-                                type='number'
-                                name='postalcode'
-                                title='postalcode'
-                                placeholder='PostalCode'
-                                lenght='30'
-                                onChange={userHandler}
-                            />
-                            Phone:<input
-                                type='text'
-                                name='phone'
-                                title='phone'
-                                placeholder='Phone'
-                                lenght='12'
-                                onChange={userHandler}
-                            />
-                            Password:<input
-                                type='text'
-                                name='password'
-                                title='password'
-                                placeholder='Password'
-                                lenght='30'
-                                onChange={userHandler}
-                            />
-                            Repeat Password<input
-                                type='text'
-                                name='password2'
-                                title='password2'
-                                placeholder='Repeat Password'
-                                lenght='30'
-                                onChange={userHandler}
-                            />
-                        </div>
-                        <div className='btn' onClick={() => reg()}>
-                            Register
-                        </div>
-                        <div className='error'>{msgError} </div>
-                    </div>
-                </div>
-            </div>
-        );
-
-    };
-
-}
+    return (
+      <div className="view">
+        <div className="container">
+          <div>You are already registered. Redirecting...</div>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="view">
+        <div className="container">
+          <div className="registerInfo">
+            <form onSubmit={handleSubmit}>
+              <h1>Register</h1>
+              {inputs.map((input) => (
+                <FormInput
+                  key={input.id}
+                  {...input}
+                  value={creds[input.name]}
+                  onChange={inputHandler}
+                />
+              ))}
+              <button className="btn">Submit</button>
+            </form>
+            <div>{msgError}</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+};
 
 export default connect((state) => ({
-    credentials: state.credentials
+  credentials: state.credentials,
 }))(Register);
