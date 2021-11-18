@@ -78,12 +78,10 @@ const GetMovies = (props) => {
         `https://drs-proyecto-api.herokuapp.com/movies/${id}`,
         token
       );
-      console.log(res.data);
       setMovies([res.data]);
       setmsgError(`Movie Found`);
     } catch (error) {
       setmsgError(`No movie Found`);
-      console.log(`${error.message}`);
     }
   };
 
@@ -93,8 +91,12 @@ const GetMovies = (props) => {
         `https://drs-proyecto-api.herokuapp.com/movies/name/${title}`,
         token
       );
-      console.log(res.data);
-      setMovies(res.data);
+      if (res.data.length === 0) {
+        setmsgError(`No movie Found`);
+      } else {
+        setMovies(res.data);
+        setmsgError(`Found ${res.data.length} movies`);
+      }
     } catch (error) {
       setmsgError(`${error}`);
       console.log(`${error.message}`);
@@ -107,9 +109,12 @@ const GetMovies = (props) => {
         `https://drs-proyecto-api.herokuapp.com/movies/cast/${cast}`,
         token
       );
-      console.log(res.data);
-      setMovies(res.data);
-      setmsgError(`Found ${res.data.length} movies`);
+      if (res.data.length === 0) {
+        setmsgError(`No movie Found`);
+      } else {
+        setMovies(res.data);
+        setmsgError(`Found ${res.data.length} movies`);
+      }
     } catch (error) {
       setmsgError(`No movie Found`);
       console.log(`${error.message}`);
@@ -122,9 +127,12 @@ const GetMovies = (props) => {
         `https://drs-proyecto-api.herokuapp.com/movies/genre/${genre}`,
         token
       );
-      console.log(res.data);
-      setMovies(res.data);
-      setmsgError(`Found ${res.data.length} movies`);
+      if (res.data.length === 0) {
+        setmsgError(`No movie Found`);
+      } else {
+        setMovies(res.data);
+        setmsgError(`Found ${res.data.length} movies`);
+      }
     } catch (error) {
       setmsgError(`No movie Found`);
       console.log(`${error.message}`);
@@ -137,9 +145,12 @@ const GetMovies = (props) => {
         `https://drs-proyecto-api.herokuapp.com/movies/city/${city}`,
         token
       );
-      console.log(res.data);
-      setMovies(res.data);
-      setmsgError(`Found ${res.data.length} movies`);
+      if (res.data.length === 0) {
+        setmsgError(`No movie Found`);
+      } else {
+        setMovies(res.data);
+        setmsgError(`Found ${res.data.length} movies`);
+      }
     } catch (error) {
       setmsgError(`No movie Found`);
       console.log(`${error.message}`);
@@ -188,6 +199,7 @@ const GetMovies = (props) => {
                 Add New Movie
               </div>
               <Select />
+              <div className="error">{msgError}</div>
             </div>
             <div className="movieInfo">
               {movies.map((movie) => {
@@ -206,13 +218,13 @@ const GetMovies = (props) => {
           </div>
         </div>
       );
-    } else {
+    } else if (props.credentials?.user?.id) {
       return (
         <div className="view">
           <div className="container">
             <div className="movieNav">
               <Select />
-              <div>{msgError}</div>
+              <div className="error">{msgError}</div>
             </div>
             <div className="movieInfo">
               {movies.map((movie) => {
@@ -228,22 +240,25 @@ const GetMovies = (props) => {
           </div>
         </div>
       );
-    }
-  } else if (msgError) {
-    return (
-      <div className="view">
-        <div className="container">{msgError}</div>
-      </div>
-    );
-  } else if (movies.length === 0) {
-    return (
-      <div className="view">
-        <div className="container">No movie Found</div>
-        <div className="btn" onClick={() => navigate("/movies")}>
-          Go back
+    } else {
+      return (
+        <div className="view">
+          <div className="container">
+            <div className="movieInfo">
+              {movies.map((movie) => {
+                return (
+                  <div key={movie.id} className="movies">
+                    <h3 className="posters" onClick={() => chooseMovie(movie)}>
+                      {movie.title}
+                    </h3>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   } else {
     return (
       <div className="view">

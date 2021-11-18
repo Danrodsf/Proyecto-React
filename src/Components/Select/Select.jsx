@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { UPDATEFILTER } from "../../redux/types";
 import { useLocation } from "react-router";
 import { connect } from "react-redux";
@@ -20,6 +20,12 @@ const Select = (props) => {
     setSelect(e.target.value);
   };
 
+  useEffect(() => {
+    setSearch("");
+    setSelect("id");
+    setmsgError("");
+  }, []);
+
   const submit = () => {
     let data = {
       filter: search,
@@ -28,6 +34,8 @@ const Select = (props) => {
 
     if (search.length < 1) {
       setmsgError("Content cannot be empty");
+    } else if (search <= 0) {
+      setmsgError("Invalid content");
     } else {
       props.dispatch({ type: UPDATEFILTER, payload: data });
       setmsgError("");
