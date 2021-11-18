@@ -45,15 +45,15 @@ const Login = (props) => {
 
       let datos = res.data;
       props.dispatch({ type: LOGIN, payload: datos });
-
-      let data = {
-        change: 0,
-      };
-
-      props.dispatch({ type: SETSTATE, payload: data });
     } catch (error) {
       setmsgError("Cannot Log In");
     }
+
+    data = {
+      change: 0,
+    };
+
+    props.dispatch({ type: SETSTATE, payload: data });
   };
 
   const logOut = () => {
