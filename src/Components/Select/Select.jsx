@@ -9,6 +9,7 @@ const Select = (props) => {
   //hooks
   const [search, setSearch] = useState("");
   const [select, setSelect] = useState("id");
+  const [msgError, setmsgError] = useState("");
 
   //handler
   const searchHandler = (e) => {
@@ -25,38 +26,51 @@ const Select = (props) => {
       select: select,
     };
 
-    props.dispatch({ type: UPDATEFILTER, payload: data });
+    if (search.length < 1) {
+      setmsgError("Content cannot be empty");
+    } else {
+      props.dispatch({ type: UPDATEFILTER, payload: data });
+      setmsgError("");
+    }
   };
 
   const reset = () => {
     props.dispatch({ type: UPDATEFILTER, payload: "" });
     setSearch("");
-    setSelect("");
+    setSelect("id");
+    setmsgError("");
   };
 
   switch (location.pathname) {
     case "/movies":
       return (
         <div className="select">
-          <input
-            type="text"
-            name="data"
-            onChange={searchHandler}
-            value={search}
-            placeholder="Search"
-          />
-          <select name="select" value={select} onChange={selectHandler}>
-            <option value="id">Id</option>
-            <option value="title">Title</option>
-            <option value="genre">Genre</option>
-            <option value="cast">Cast</option>
-            <option value="city">City</option>
-          </select>
-          <div className="btn" onClick={() => submit()}>
-            Search
+          <div className="input">
+            <input
+              type="text"
+              name="data"
+              onChange={searchHandler}
+              value={search}
+              placeholder="Search"
+            />
+            <div className="error">{msgError}</div>
           </div>
-          <div className="btn" onClick={() => reset()}>
-            Reset
+          <div className="options">
+            <select name="select" value={select} onChange={selectHandler}>
+              <option value="id">Id</option>
+              <option value="title">Title</option>
+              <option value="genre">Genre</option>
+              <option value="cast">Cast</option>
+              <option value="city">City</option>
+            </select>
+          </div>
+          <div className="buttons">
+            <div className="btn" onClick={() => submit()}>
+              Search
+            </div>
+            <div className="btn" onClick={() => reset()}>
+              Reset
+            </div>
           </div>
         </div>
       );
@@ -81,6 +95,7 @@ const Select = (props) => {
           <div className="btn" onClick={() => reset()}>
             Reset
           </div>
+          <div className="error">{msgError}</div>
         </div>
       );
 
@@ -104,6 +119,7 @@ const Select = (props) => {
           <div className="btn" onClick={() => reset()}>
             Reset
           </div>
+          <div className="error">{msgError}</div>
         </div>
       );
 

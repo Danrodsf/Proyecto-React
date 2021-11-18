@@ -1,55 +1,55 @@
 .movieNav {
-    height: 10%;
-    width: 100%;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    .btn {
-        display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            transition: 0.3s;
-            background-color: $orange;
-            border-radius: 0.3em;
-            height: 2em;
-            width: 10em;
-    }
+    color: white;
+    transition: 0.3s;
+    background-color: $orange;
+    border-radius: 0.3em;
+    height: 2em;
+    width: 10em;
+  }
 }
 
 .movieInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90%;
+  .movies {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    width: 20em;
+    height: 10em;
+    border: 0.2em solid $orange;
+    border-radius: 0.5em;
+    margin: 2em;
+    background-color: $darkgray;
+  }
+  .posters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-        .movies {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        width: 20em;
-        height: 10em;
-        border:0.2em solid $orange;
-        border-radius: 0.5em;
-        margin: 2em;
-        background-color: $darkgray;
-        }
-        .posters {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 5em;
-            margin: 0 0 0 0 ;
-            padding: 0 0 0 0;
-        }
+    height: 5em;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+  }
 
-        .btn {
-        width: 50%;
-        background-color: $orange;
-        border-radius: 0.3em;
-        }
+  .btn {
+    width: 50%;
+    background-color: $orange;
+    border-radius: 0.3em;
+  }
 }
-

@@ -1,22 +1,18 @@
 .formInput {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
+
   span {
     font-size: 0.8em;
     color: red;
     display: none;
   }
-  
+
   input:invalid[focused="true"] {
     border: 0.2em solid red;
   }
-  
+
   input:invalid[focused="true"] ~ span {
     display: block;
   }
-  
 }
-

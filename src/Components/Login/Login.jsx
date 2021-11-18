@@ -26,6 +26,8 @@ const Login = (props) => {
   };
 
   const logIn = async () => {
+    navigate("/");
+
     let data = {
       change: 3,
     };
@@ -46,7 +48,7 @@ const Login = (props) => {
       let datos = res.data;
       props.dispatch({ type: LOGIN, payload: datos });
     } catch (error) {
-      setmsgError("Cannot Log In");
+      setmsgError("Cannot Log In, verify that email and password are correct");
     }
 
     data = {
@@ -67,37 +69,43 @@ const Login = (props) => {
     if (props.credentials?.token !== "") {
       return (
         <div className="loginView">
-          Logged in as {props.credentials?.user?.name}
+          <div className="logged">
+            LOGGED IN AS {props.credentials?.user?.name.toUpperCase()}
+          </div>
           <div className="btn" onClick={() => logOut()}>
             LOG OUT
           </div>
-          <Button view="PROFILE" url="/profile" />
+          <div className="profile">
+            <Button view="PROFILE" url="/profile" />
+          </div>
         </div>
       );
     } else {
       return (
         <div className="loginView">
-          <input
-            type="email"
-            name="email"
-            title="email"
-            onChange={inputHandler}
-            lenght="30"
-            placeholder="email"
-          />
-          <input
-            type="password"
-            name="password"
-            title="password"
-            onChange={inputHandler}
-            lenght="30"
-            placeholder="Password"
-          />
+          <div className="error">
+            <h5>{msgError}</h5>
+          </div>
+          <div className="inputs">
+            <input
+              type="email"
+              name="email"
+              title="email"
+              onChange={inputHandler}
+              lenght="30"
+              placeholder="email"
+            />
+            <input
+              type="password"
+              name="password"
+              title="password"
+              onChange={inputHandler}
+              lenght="30"
+              placeholder="Password"
+            />
+          </div>
           <div className="btn" onClick={() => logIn()}>
             LOG IN
-          </div>
-          <div className="error">
-            <h3>{msgError}</h3>
           </div>
         </div>
       );

@@ -1,42 +1,43 @@
 .userNav {
-    height: 10%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .btn {
+    height: 2em;
+    width: 10em;
+  }
 }
 
 .userInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  .users {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    width: 25em;
+    height: 20em;
+    border: 0.2em solid $orange;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    margin: 2em;
+    line-height: 0.1em;
+    background-color: $darkgray;
+  }
+  h2 {
+    color: $orange;
+    padding-bottom: 1em;
+  }
+  .btn {
+    margin-top: 1em;
     width: 100%;
-        .users {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        width: 25em;
-        height: 20em;
-        border:0.2em solid $orange;
-        border-radius: 0.5em;
-        padding: 0.5em;
-        margin: 2em;
-        line-height: 0.1em;
-        background-color: $darkgray;
-        }
-        h2 {
-        color: $orange;
-        padding-bottom:1em ;
-        }
-        .btn {
-        margin-top:1em;
-        width: 100%;
-        background-color: $orange;
-        border-radius: 0.3em;
-        }
-
+    background-color: $orange;
+    border-radius: 0.3em;
+  }
 }
-
-
