@@ -11,7 +11,7 @@ const ProfOrders = (props) => {
 
   useEffect(() => {
     getOrderByUserId(props.credentials.user.id);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getOrderByUserId = async (userId) => {
     try {
@@ -25,6 +25,13 @@ const ProfOrders = (props) => {
     }
   };
 
+  const formatDate = (initialDate) => {
+    let splitDate = initialDate.split(/[- : T .]/);
+    let arrayDate = [splitDate[2], splitDate[1], splitDate[0]];
+    let formattedDate = arrayDate.join("-");
+    return formattedDate;
+  };
+
   return (
     <div className="profOrdersInfo">
       {orders.map((order) => {
@@ -36,8 +43,8 @@ const ProfOrders = (props) => {
             </div>
             <p>Rented Movie: {order?.movie?.title}</p>
             <p>City: {order.user?.city}</p>
-            <p>Rent Date: {order?.rentDate}</p>
-            <p>Return Date: {order?.returnDate}</p>
+            <p>Rent Date: {formatDate(order?.rentDate)}</p>
+            <p>Return Date: {formatDate(order?.returnDate)}</p>
           </div>
         );
       })}

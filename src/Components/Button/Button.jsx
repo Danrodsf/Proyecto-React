@@ -1,18 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { UPDATEFILTER } from "../../redux/types";
 
 const Button = (props) => {
   const navigate = useNavigate();
 
   const next = () => {
-    if (props.view === "Logout") {
-      setTimeout(() => {
-        localStorage.clear();
-        navigate(props.url);
-      }, 1000);
-    } else {
-      navigate(props.url);
-    }
+    props.dispatch({ type: UPDATEFILTER, payload: "" });
+    navigate(props.url);
   };
 
   return (
@@ -22,4 +18,7 @@ const Button = (props) => {
   );
 };
 
-export default Button;
+export default connect((state) => ({
+  credentials: state.credentials,
+  data: state.data,
+}))(Button);

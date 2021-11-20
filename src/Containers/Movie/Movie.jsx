@@ -7,6 +7,8 @@ const Movie = (props) => {
     headers: { Authorization: `Bearer ${props.credentials.token}` },
   };
 
+  let url = "https://image.tmdb.org/t/p/original/";
+
   const [movie, setMovie] = useState(
     JSON.parse(localStorage.getItem("ChoosenMovie"))
   );
@@ -35,19 +37,41 @@ const Movie = (props) => {
     }
   };
 
+  const formatDate = (initialDate) => {
+    let splitDate = initialDate.split(/[- : T .]/);
+    let arrayDate = [splitDate[2], splitDate[1], splitDate[0]];
+    let formattedDate = arrayDate.join("-");
+    return formattedDate;
+  };
+
   if (props.credentials?.user?.name) {
     return (
       <div className="view">
         <div className="container">
-          <div className="movie">
-            <h2>{JSON.stringify(movie.title)}</h2>
-            <p>{movie.genre}</p>
-            <p>{movie.cast}</p>
-            <p>{movie.city}</p>
-            <div className="btnOrange" onClick={() => createOrder()}>
-              Rent
+          <div
+            className="background"
+            style={{ backgroundImage: `url("${url + movie.backdropPath}")` }}
+          >
+            <div className="infoContainer">
+              <img
+                className="poster"
+                src={`${url}${movie.posterPath}`}
+                alt=""
+              />
+              <div className="info">
+                <h2>{movie.title}</h2>
+                <p>Genre: {movie.genre}</p>
+                <p>Rating: {movie.rating}</p>
+                <p>Cast: {movie.cast}</p>
+                <p>Available City: {movie.city}</p>
+                <p>Overview: {movie.overview}</p>
+                <p>Release Date: {formatDate(movie.releaseDate)}</p>
+                <div className="btnOrange" onClick={() => createOrder()}>
+                  Rent
+                </div>
+              </div>
+              <div>{msgError}</div>
             </div>
-            <div>{msgError}</div>
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ const GetOrders = (props) => {
         getAllOrders();
       }, 2000);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (props.data.filter.select) {
@@ -44,7 +44,7 @@ const GetOrders = (props) => {
       setOrders(props.data.orders);
       setmsgError("");
     }
-  }, [props.data.filter, props.data.orders]);
+  }, [props.data.filter, props.data.orders]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getAllOrders = async () => {
     try {

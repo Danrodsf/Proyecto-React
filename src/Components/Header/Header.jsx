@@ -53,5 +53,4 @@ const Header = (props) => {
 
 export default connect((state) => ({
   credentials: state.credentials,
-  state: state.state,
 }))(Header);

@@ -8,16 +8,8 @@ $graygradient: linear-gradient(
   rgb(19, 19, 19) 0%,
   rgba(41, 41, 41, 1) 100%
 );
-$orangegradient: linear-gradient(
-  0deg,
-  rgb(149, 53, 9) 0%,
-  rgba(199, 73, 15) 100%
-);
-$orangegradientinverted: linear-gradient(
-  180deg,
-  rgb(149, 53, 9) 0%,
-  rgba(199, 73, 15) 100%
-);
+$orangegradient: linear-gradient(0deg, $orange 0%, $darkorange 100%);
+$orangegradientinverted: linear-gradient(180deg, $darkorange 0%, $orange 100%);
 
 // Scrollbar
 

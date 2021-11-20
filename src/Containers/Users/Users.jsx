@@ -23,7 +23,7 @@ const GetUsers = (props) => {
         getAllUsers();
       }, 2000);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (props.data.filter.select) {
@@ -44,7 +44,7 @@ const GetUsers = (props) => {
       setUsers(props.data.users);
       setmsgError("");
     }
-  }, [props.data.filter, props.data.users]);
+  }, [props.data.filter, props.data.users]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getAllUsers = async () => {
     try {
@@ -106,6 +106,13 @@ const GetUsers = (props) => {
     }
   };
 
+  const formatDate = (initialDate) => {
+    let splitDate = initialDate.split(/[- : T .]/);
+    let arrayDate = [splitDate[2], splitDate[1], splitDate[0]];
+    let formattedDate = arrayDate.join("-");
+    return formattedDate;
+  };
+
   if (props.credentials?.user?.admin) {
     if (users[0]?.id) {
       return (
@@ -121,8 +128,8 @@ const GetUsers = (props) => {
                     <h2>{user?.name}</h2>
                     <h4>User Number: {user?.id}</h4>
                     <p>Email: {user?.email}</p>
-                    <p>Register Date: {user?.createdAt}</p>
-                    <p>Last Update: {user?.updatedAt}</p>
+                    <p>Register Date: {formatDate(user?.createdAt)}</p>
+                    <p>Last Update: {formatDate(user?.updatedAt)}</p>
                     <div
                       className="btnOrange"
                       onClick={() => deleteAlert(user.id)}

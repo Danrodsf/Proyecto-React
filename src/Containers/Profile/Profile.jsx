@@ -104,6 +104,13 @@ const Profile = (props) => {
     },
   ];
 
+  const formatDate = (initialDate) => {
+    let splitDate = initialDate.split(/[- : T .]/);
+    let arrayDate = [splitDate[2], splitDate[1], splitDate[0]];
+    let formattedDate = arrayDate.join("-");
+    return formattedDate;
+  };
+
   if (props.credentials?.user?.admin && props.state?.change !== "") {
     if (props.state?.change === 1) {
       return (
@@ -147,11 +154,11 @@ const Profile = (props) => {
               </div>
               <div>
                 <p>Registered since:</p>
-                {props.credentials?.user?.createdAt}
+                {formatDate(props.credentials?.user?.createdAt)}
               </div>
               <div>
                 <p>Last Update:</p>
-                {props.credentials?.user?.updatedAt}
+                {formatDate(props.credentials?.user?.updatedAt)}
               </div>
               <div className="btnOrange" onClick={() => editBtn()}>
                 Update Info
@@ -211,11 +218,11 @@ const Profile = (props) => {
               </div>
               <div>
                 <p>Registered since:</p>
-                {props.credentials?.user?.createdAt}
+                {formatDate(props.credentials?.user?.createdAt)}
               </div>
               <div>
                 <p>Last Update:</p>
-                {props.credentials?.user?.updatedAt}
+                {formatDate(props.credentials?.user?.updatedAt)}
               </div>
               <div className="btnOrange" onClick={() => editBtn()}>
                 Update Info

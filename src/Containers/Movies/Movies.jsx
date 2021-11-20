@@ -12,6 +12,8 @@ const GetMovies = (props) => {
     headers: { Authorization: `Bearer ${props.credentials.token}` },
   };
 
+  let url = "https://image.tmdb.org/t/p/original/";
+
   //HOOKS
   const [movies, setMovies] = useState([]);
   const [msgError, setmsgError] = useState("");
@@ -24,7 +26,7 @@ const GetMovies = (props) => {
         getAllMovies();
       }, 2000);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (props.credentials.token !== "") {
@@ -61,7 +63,7 @@ const GetMovies = (props) => {
       setMovies(props.data.movies);
       setmsgError("");
     }
-  }, [props.data.filter, props.data.movies]);
+  }, [props.data.filter, props.data.movies]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getAllMovies = async () => {
     try {
@@ -202,11 +204,19 @@ const GetMovies = (props) => {
             <div className="movieInfo">
               {movies.map((movie) => {
                 return (
-                  <div key={movie.id} className="movies">
-                    <h3 className="posters" onClick={() => chooseMovie(movie)}>
-                      {movie.title}
-                    </h3>
-                    <div className="btn" onClick={() => deleteAlert(movie.id)}>
+                  <div key={movie.id} className="movieContainer">
+                    <div className="movies">
+                      <img
+                        alt={movie.id}
+                        className="poster"
+                        onClick={() => chooseMovie(movie)}
+                        src={`${url}${movie.posterPath}`}
+                      />
+                    </div>
+                    <div
+                      className="btnOrange"
+                      onClick={() => deleteAlert(movie.id)}
+                    >
                       Delete
                     </div>
                   </div>
@@ -227,10 +237,15 @@ const GetMovies = (props) => {
             <div className="movieInfo">
               {movies.map((movie) => {
                 return (
-                  <div key={movie.id} className="movies">
-                    <h3 className="posters" onClick={() => chooseMovie(movie)}>
-                      {movie.title}
-                    </h3>
+                  <div key={movie.id} className="movieContainer">
+                    <div className="movies">
+                      <img
+                        alt={movie.id}
+                        className="poster"
+                        onClick={() => chooseMovie(movie)}
+                        src={`${url}${movie.posterPath}`}
+                      />
+                    </div>
                   </div>
                 );
               })}
@@ -245,10 +260,15 @@ const GetMovies = (props) => {
             <div className="movieInfo">
               {movies.map((movie) => {
                 return (
-                  <div key={movie.id} className="movies">
-                    <h3 className="posters" onClick={() => chooseMovie(movie)}>
-                      {movie.title}
-                    </h3>
+                  <div key={movie.id} className="movieContainer">
+                    <div className="movies">
+                      <img
+                        alt={movie.id}
+                        className="poster"
+                        onClick={() => chooseMovie(movie)}
+                        src={`${url}${movie.posterPath}`}
+                      />
+                    </div>
                   </div>
                 );
               })}
