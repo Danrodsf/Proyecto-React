@@ -47,7 +47,6 @@ const GetOrders = (props) => {
         token
       );
       setOrders(res.data);
-
       props.dispatch({ type: UPDATEORDERS, payload: res.data });
     } catch (error) {
       setmsgError("Order not found");
@@ -109,6 +108,13 @@ const GetOrders = (props) => {
     }
   };
 
+  const formatDate = (initialDate) => {
+    let splitDate = initialDate.split(/[- : T .]/);
+    let arrayDate = [splitDate[2], splitDate[1], splitDate[0]];
+    let formattedDate = arrayDate.join("-");
+    return formattedDate;
+  };
+
   if (props.credentials?.user?.admin) {
     if (orders[0]?.id) {
       return (
@@ -116,22 +122,22 @@ const GetOrders = (props) => {
           <div className="container">
             <div className="orderNav">
               <Select />
-              <div>{msgError}</div>
+              <div className="error">{msgError}</div>
             </div>
             <div className="orderInfo">
               {orders.map((order) => {
                 return (
                   <div key={order.id} className="orders">
                     <div>
-                      <h4>Order Number: {JSON.stringify(order?.id)}</h4>
-                      <p>User Name: {JSON.stringify(order?.user?.name)}</p>
+                      <h4>Order Number: {order?.id}</h4>
+                      <p>User Name: {order?.user?.name}</p>
                     </div>
-                    <p>User ID: {JSON.stringify(order?.userId)}</p>
-                    <p>Rented Movie: {JSON.stringify(order?.movie?.title)}</p>
-                    <p>Movie ID: {JSON.stringify(order?.movieId)}</p>
-                    <p>City: {JSON.stringify(order.user?.city)}</p>
-                    <p>Rent Date: {JSON.stringify(order?.rentDate)}</p>
-                    <p>Return Date: {JSON.stringify(order?.returnDate)}</p>
+                    <p>User ID: {order?.userId}</p>
+                    <p>Rented Movie: {order?.movie?.title}</p>
+                    <p>Movie ID: {order?.movieId}</p>
+                    <p>City: {order.user?.city}</p>
+                    <p>Rent Date: {formatDate(order?.rentDate)}</p>
+                    <p>Return Date: {formatDate(order?.returnDate)}</p>
                     <div className="btn" onClick={() => deleteAlert(order.id)}>
                       Delete
                     </div>

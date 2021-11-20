@@ -114,11 +114,11 @@ const GetUsers = (props) => {
               {users.map((user) => {
                 return (
                   <div key={user.id} className="users">
-                    <h2>{JSON.stringify(user?.name)}</h2>
-                    <h4>User Number: {JSON.stringify(user?.id)}</h4>
-                    <p>Email: {JSON.stringify(user?.email)}</p>
-                    <p>Register Date: {JSON.stringify(user?.createdAt)}</p>
-                    <p>Last Update: {JSON.stringify(user?.updatedAt)}</p>
+                    <h2>{user?.name}</h2>
+                    <h4>User Number: {user?.id}</h4>
+                    <p>Email: {user?.email}</p>
+                    <p>Register Date: {user?.createdAt}</p>
+                    <p>Last Update: {user?.updatedAt}</p>
                     <div className="btn" onClick={() => deleteAlert(user.id)}>
                       Delete
                     </div>

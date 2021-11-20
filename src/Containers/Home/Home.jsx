@@ -15,7 +15,7 @@ const Home = (props) => {
       <div className="view">
         <div className="container">
           <div className="dank-ass-loader">
-            <div clasName="row">
+            <div className="row">
               <div className="arrow up outer outer-18"></div>
               <div className="arrow down outer outer-17"></div>
               <div className="arrow up outer outer-16"></div>

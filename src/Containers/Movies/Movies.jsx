@@ -17,9 +17,13 @@ const GetMovies = (props) => {
   const [msgError, setmsgError] = useState("");
 
   useEffect(() => {
-    setTimeout(() => {
-      getAllMovies();
-    }, 2000);
+    if (props.data.filter.filter) {
+      return;
+    } else {
+      setTimeout(() => {
+        getAllMovies();
+      }, 2000);
+    }
   }, []);
 
   useEffect(() => {
@@ -65,7 +69,6 @@ const GetMovies = (props) => {
         "https://drs-proyecto-api.herokuapp.com/movies"
       );
       setMovies(res.data);
-
       props.dispatch({ type: UPDATEMOVIES, payload: res.data });
     } catch (error) {
       setmsgError("Cannot get Movies");
@@ -178,18 +181,16 @@ const GetMovies = (props) => {
     }
   };
 
-  const deleteAlert = (e) => {
+  const deleteAlert = async (e) => {
     if (window.confirm("Are you sure you wish to delete this Movie?")) {
-      deleteMovie(e);
-      getAllMovies();
+      await deleteMovie(e);
+      await getAllMovies();
     } else {
       return;
     }
   };
 
   if (movies[0]?.title) {
-    //el " ? " sirve para que no se detenga mientras no encuentre el array
-
     if (props.credentials?.user?.admin) {
       return (
         <div className="view">
