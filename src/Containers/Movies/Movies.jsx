@@ -82,9 +82,9 @@ const GetMovies = (props) => {
         token
       );
       setMovies([res.data]);
-      setmsgError(`Movie Found`);
+      setmsgError("Movie Found");
     } catch (error) {
-      setmsgError(`No movie Found`);
+      setmsgError("No movie Found");
     }
   };
 
@@ -95,14 +95,13 @@ const GetMovies = (props) => {
         token
       );
       if (res.data.length === 0) {
-        setmsgError(`No movie Found`);
+        setmsgError("No movie Found");
       } else {
         setMovies(res.data);
         setmsgError(`Found ${res.data.length} movies`);
       }
     } catch (error) {
-      setmsgError(`${error}`);
-      console.log(`${error.message}`);
+      setmsgError("No movie Found");
     }
   };
 
@@ -113,14 +112,13 @@ const GetMovies = (props) => {
         token
       );
       if (res.data.length === 0) {
-        setmsgError(`No movie Found`);
+        setmsgError("No movie Found");
       } else {
         setMovies(res.data);
         setmsgError(`Found ${res.data.length} movies`);
       }
     } catch (error) {
-      setmsgError(`No movie Found`);
-      console.log(`${error.message}`);
+      setmsgError("No movie Found");
     }
   };
 
@@ -131,14 +129,13 @@ const GetMovies = (props) => {
         token
       );
       if (res.data.length === 0) {
-        setmsgError(`No movie Found`);
+        setmsgError("No movie Found");
       } else {
         setMovies(res.data);
         setmsgError(`Found ${res.data.length} movies`);
       }
     } catch (error) {
-      setmsgError(`No movie Found`);
-      console.log(`${error.message}`);
+      setmsgError("No movie Found");
     }
   };
 
@@ -149,13 +146,13 @@ const GetMovies = (props) => {
         token
       );
       if (res.data.length === 0) {
-        setmsgError(`No movie Found`);
+        setmsgError("No movie Found");
       } else {
         setMovies(res.data);
         setmsgError(`Found ${res.data.length} movies`);
       }
     } catch (error) {
-      setmsgError(`No movie Found`);
+      setmsgError("No movie Found");
       console.log(`${error.message}`);
     }
   };
@@ -196,7 +193,7 @@ const GetMovies = (props) => {
         <div className="view">
           <div className="container">
             <div className="movieNav">
-              <div className="btn" onClick={() => addNewMovie()}>
+              <div className="btnOrange" onClick={() => addNewMovie()}>
                 Add New Movie
               </div>
               <Select />
@@ -260,7 +257,7 @@ const GetMovies = (props) => {
         </div>
       );
     }
-  } else {
+  } else if (!msgError) {
     return (
       <div className="view">
         <div className="container">
@@ -299,6 +296,12 @@ const GetMovies = (props) => {
             </div>
           </div>
         </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="view">
+        <div className="container">{msgError}</div>
       </div>
     );
   }

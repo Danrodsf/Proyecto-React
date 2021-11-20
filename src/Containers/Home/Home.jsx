@@ -2,7 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 
 const Home = (props) => {
-  if (props.state.change < 1) {
+  if (props.state.change <= 1) {
     return (
       <div className="view">
         <div className="container">

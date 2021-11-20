@@ -16,9 +16,13 @@ const GetUsers = (props) => {
   //UseEffect
 
   useEffect(() => {
-    setTimeout(() => {
-      getAllUsers();
-    }, 2000);
+    if (props.data.filter.filter) {
+      return;
+    } else {
+      setTimeout(() => {
+        getAllUsers();
+      }, 2000);
+    }
   }, []);
 
   useEffect(() => {
@@ -64,7 +68,7 @@ const GetUsers = (props) => {
       setUsers([res.data]);
       setmsgError("User Found");
     } catch (error) {
-      setmsgError(`${error}`);
+      setmsgError("Cannot get user");
     }
   };
 
@@ -77,7 +81,7 @@ const GetUsers = (props) => {
       setUsers(res.data);
       setmsgError("Users Found");
     } catch (error) {
-      setmsgError(`${error}`);
+      setmsgError("Cannot get user");
     }
   };
 
@@ -89,7 +93,7 @@ const GetUsers = (props) => {
       );
       setmsgError("User Deleted");
     } catch (error) {
-      setmsgError(`${error}`);
+      setmsgError("Cannot get user");
     }
   };
 
@@ -119,7 +123,10 @@ const GetUsers = (props) => {
                     <p>Email: {user?.email}</p>
                     <p>Register Date: {user?.createdAt}</p>
                     <p>Last Update: {user?.updatedAt}</p>
-                    <div className="btn" onClick={() => deleteAlert(user.id)}>
+                    <div
+                      className="btnOrange"
+                      onClick={() => deleteAlert(user.id)}
+                    >
                       Delete
                     </div>
                   </div>
@@ -129,7 +136,7 @@ const GetUsers = (props) => {
           </div>
         </div>
       );
-    } else {
+    } else if (!msgError) {
       return (
         <div className="view">
           <div className="container">
@@ -170,13 +177,13 @@ const GetUsers = (props) => {
           </div>
         </div>
       );
+    } else {
+      return (
+        <div className="view">
+          <div className="container">{msgError}</div>
+        </div>
+      );
     }
-  } else if (msgError) {
-    return (
-      <div className="view">
-        <div className="container">{msgError}</div>
-      </div>
-    );
   } else {
     return (
       <div className="view">

@@ -44,7 +44,7 @@ const Movie = (props) => {
             <p>{movie.genre}</p>
             <p>{movie.cast}</p>
             <p>{movie.city}</p>
-            <div className="btn" onClick={() => createOrder()}>
+            <div className="btnOrange" onClick={() => createOrder()}>
               Rent
             </div>
             <div>{msgError}</div>

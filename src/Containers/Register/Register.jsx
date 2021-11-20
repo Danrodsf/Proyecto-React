@@ -63,12 +63,11 @@ const Register = (props) => {
     {
       id: 4,
       name: "password",
-      type: "text",
+      type: "password",
       placeholder: "Password",
-      errorMessage:
-        "Password should be 4-20 characters and include at least 1 letter and 1 number!",
+      errorMessage: "Password should be 4-20 characters",
       label: "Password",
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{4,20}$`,
+      pattern: "^.{4,20}$",
       required: true,
     },
     {
@@ -131,7 +130,7 @@ const Register = (props) => {
                   onChange={inputHandler}
                 />
               ))}
-              <button className="btn">Submit</button>
+              <button className="btnOrange">Submit</button>
             </form>
             <div>{msgError}</div>
           </div>

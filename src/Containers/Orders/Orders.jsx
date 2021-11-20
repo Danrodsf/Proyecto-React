@@ -13,10 +13,16 @@ const GetOrders = (props) => {
   const [orders, setOrders] = useState([]);
   const [msgError, setmsgError] = useState("");
 
+  //UseEffect
+
   useEffect(() => {
-    setTimeout(() => {
-      getAllOrders();
-    }, 2000);
+    if (props.data.filter.filter) {
+      return;
+    } else {
+      setTimeout(() => {
+        getAllOrders();
+      }, 2000);
+    }
   }, []);
 
   useEffect(() => {
@@ -62,7 +68,7 @@ const GetOrders = (props) => {
       if (res.data.length === 0) {
         setmsgError(`Order not Found`);
       } else {
-        setOrders(res.data);
+        setOrders([res.data]);
         setmsgError(`Order Found`);
       }
     } catch (error) {
@@ -138,7 +144,10 @@ const GetOrders = (props) => {
                     <p>City: {order.user?.city}</p>
                     <p>Rent Date: {formatDate(order?.rentDate)}</p>
                     <p>Return Date: {formatDate(order?.returnDate)}</p>
-                    <div className="btn" onClick={() => deleteAlert(order.id)}>
+                    <div
+                      className="btnOrange"
+                      onClick={() => deleteAlert(order.id)}
+                    >
                       Delete
                     </div>
                   </div>
@@ -148,7 +157,7 @@ const GetOrders = (props) => {
           </div>
         </div>
       );
-    } else {
+    } else if (!msgError) {
       return (
         <div className="view">
           <div className="container">
@@ -187,6 +196,12 @@ const GetOrders = (props) => {
               </div>
             </div>
           </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="view">
+          <div className="container">{msgError}</div>
         </div>
       );
     }

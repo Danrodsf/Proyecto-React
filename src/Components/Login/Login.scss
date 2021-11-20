@@ -5,6 +5,14 @@
   align-items: center;
   color: white;
 
+  button {
+    all: unset;
+  }
+
+  form {
+    all: unset;
+  }
+
   .error {
     width: 30%;
   }

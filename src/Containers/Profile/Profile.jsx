@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { useState, useEffect } from "react";
 import { SETSTATE, UPDATE_USER } from "../../redux/types";
 import ProfOrders from "../../Components/ProfOrders/ProfOrders";
+import FormInput from "../../Components/FormInputs/FormInputs";
 import axios from "axios";
 
 const Profile = (props) => {
@@ -16,6 +17,11 @@ const Profile = (props) => {
   //Handlers
   const profileHandler = (e) => {
     setCreds({ ...creds, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    edit();
   };
 
   useEffect(() => {
@@ -64,43 +70,58 @@ const Profile = (props) => {
     }
   };
 
+  const inputs = [
+    {
+      id: 1,
+      name: "name",
+      type: "text",
+      placeholder: "Username",
+      errorMessage:
+        "Username should be 3-16 characters and shouldn't include any special character!",
+      label: "Username",
+      pattern: "^[A-Za-z0-9 ]{3,16}$",
+      required: true,
+    },
+    {
+      id: 2,
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      errorMessage: "It should be a valid email address!",
+      label: "Email",
+      required: true,
+    },
+    {
+      id: 3,
+      name: "city",
+      type: "text",
+      placeholder: "City",
+      errorMessage:
+        "We are currently available only in Valencia, Madrid or Zaragoza",
+      label: "City",
+      pattern: "Valencia|valencia|Madrid|madrid|Zaragoza|zaragoza",
+      required: true,
+    },
+  ];
+
   if (props.credentials?.user?.admin && props.state?.change !== "") {
     if (props.state?.change === 1) {
       return (
         <div className="view">
           <div className="container">
             <div className="profiles">
-              <div>PERFIL DE ADMINISTRADOR</div>
-              <div>
-                <p>Name:</p>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder={creds?.name}
-                  onChange={profileHandler}
-                />
-              </div>
-              <div>
-                <p>Email:</p>
-                <input
-                  type="text"
-                  name="email"
-                  placeholder={creds?.email}
-                  onChange={profileHandler}
-                />
-              </div>
-              <div>
-                <p>City:</p>
-                <input
-                  type="text"
-                  name="city"
-                  placeholder={creds?.city}
-                  onChange={profileHandler}
-                />
-              </div>
-              <div className="btn" onClick={() => edit()}>
-                Save
-              </div>
+              <form onSubmit={handleSubmit}>
+                <h1>Update Info</h1>
+                {inputs.map((input) => (
+                  <FormInput
+                    key={input.id}
+                    {...input}
+                    value={creds[input.name]}
+                    onChange={profileHandler}
+                  />
+                ))}
+                <button className="btnOrange">Submit</button>
+              </form>
               <div>{msgError}</div>
             </div>
             <div className="profileOrders">
@@ -132,7 +153,7 @@ const Profile = (props) => {
                 <p>Last Update:</p>
                 {props.credentials?.user?.updatedAt}
               </div>
-              <div className="btn" onClick={() => editBtn()}>
+              <div className="btnOrange" onClick={() => editBtn()}>
                 Update Info
               </div>
               <div>{msgError}</div>
@@ -150,37 +171,18 @@ const Profile = (props) => {
         <div className="view">
           <div className="container">
             <div className="profiles">
-              <div>PERFIL DE USUARIO</div>
-              <div>
-                <p>Name:</p>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder={creds?.name}
-                  onChange={profileHandler}
-                />
-              </div>
-              <div>
-                <p>Email:</p>
-                <input
-                  type="text"
-                  name="email"
-                  placeholder={creds?.email}
-                  onChange={profileHandler}
-                />
-              </div>
-              <div>
-                <p>City:</p>
-                <input
-                  type="text"
-                  name="city"
-                  placeholder={creds?.city}
-                  onChange={profileHandler}
-                />
-              </div>
-              <div className="btn" onClick={() => edit()}>
-                Save
-              </div>
+              <form onSubmit={handleSubmit}>
+                <h1>Update Info</h1>
+                {inputs.map((input) => (
+                  <FormInput
+                    key={input.id}
+                    {...input}
+                    value={creds[input.name]}
+                    onChange={profileHandler}
+                  />
+                ))}
+                <button className="btnOrange">Submit</button>
+              </form>
               <div>{msgError}</div>
             </div>
             <div className="profileOrders">
@@ -215,7 +217,7 @@ const Profile = (props) => {
                 <p>Last Update:</p>
                 {props.credentials?.user?.updatedAt}
               </div>
-              <div className="btn" onClick={() => editBtn()}>
+              <div className="btnOrange" onClick={() => editBtn()}>
                 Update Info
               </div>
               <div>{msgError}</div>

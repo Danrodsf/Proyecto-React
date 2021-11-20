@@ -73,10 +73,10 @@ const Select = (props) => {
             </select>
           </div>
           <div className="buttons">
-            <div className="btn" onClick={() => submit()}>
+            <div className="btnOrange" onClick={() => submit()}>
               Search
             </div>
-            <div className="btn" onClick={() => reset()}>
+            <div className="btnOrange" onClick={() => reset()}>
               Reset
             </div>
           </div>
@@ -97,10 +97,10 @@ const Select = (props) => {
             <option value="id">Id</option>
             <option value="city">City</option>
           </select>
-          <div className="btn" onClick={() => submit()}>
+          <div className="btnOrange" onClick={() => submit()}>
             Search
           </div>
-          <div className="btn" onClick={() => reset()}>
+          <div className="btnOrange" onClick={() => reset()}>
             Reset
           </div>
           <div className="error">{msgError}</div>
@@ -121,10 +121,10 @@ const Select = (props) => {
             <option value="id">Id</option>
             <option value="userId">UserId</option>
           </select>
-          <div className="btn" onClick={() => submit()}>
+          <div className="btnOrange" onClick={() => submit()}>
             Search
           </div>
-          <div className="btn" onClick={() => reset()}>
+          <div className="btnOrange" onClick={() => reset()}>
             Reset
           </div>
           <div className="error">{msgError}</div>

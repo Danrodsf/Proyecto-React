@@ -33,6 +33,26 @@ $orangegradientinverted: linear-gradient(
 
 //clases
 
+button {
+  all: unset;
+}
+
+input {
+  width: 20em;
+  height: 2em;
+  margin: 1em;
+  transition: 0.3s;
+  outline: none;
+  border-radius: 0.3em;
+  border: 0.2em solid transparent;
+}
+
+input:hover {
+  transition: 0.3s;
+  cursor: pointer;
+  border: 0.2em solid $orange;
+}
+
 .view {
   display: flex;
   justify-content: center;
@@ -55,33 +75,33 @@ $orangegradientinverted: linear-gradient(
   scrollbar-color: $orange $graygradient;
 }
 
-input {
-  width: 20em;
-  height: 2em;
-  margin: 1em;
-  transition: 0.3s;
-  outline: none;
-  border-radius: 0.3em;
-  border: 0.2em solid transparent;
-}
-
-input:hover {
-  transition: 0.3s;
-  cursor: pointer;
-  border: 0.2em solid $orange;
-}
-
 .btn {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 2em;
-  border-radius: 0.1em;
   transition: 0.3s;
   color: white;
 }
 
 .btn:hover {
+  transition: 0.3s;
+  color: $darkgray;
+  cursor: pointer;
+}
+
+.btnOrange {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $orange;
+  border-radius: 0.3em;
+  height: 2em;
+  width: 10em;
+  margin: 1em;
+}
+
+.btnOrange:hover {
   transition: 0.3s;
   color: $darkgray;
   cursor: pointer;

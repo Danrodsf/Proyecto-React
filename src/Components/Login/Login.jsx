@@ -17,6 +17,11 @@ const Login = (props) => {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    logIn();
+  };
+
   const loginBtn = () => {
     let data = {
       change: 0,
@@ -86,27 +91,26 @@ const Login = (props) => {
           <div className="error">
             <h5>{msgError}</h5>
           </div>
-          <div className="inputs">
+          <form className="inputs" onSubmit={handleSubmit}>
             <input
               type="email"
               name="email"
               title="email"
               onChange={inputHandler}
-              lenght="30"
+              lenght="40"
               placeholder="email"
             />
             <input
               type="password"
               name="password"
-              title="password"
+              title="Password should be 4-20 characters"
               onChange={inputHandler}
               lenght="30"
+              pattern="^.{4,20}$"
               placeholder="Password"
             />
-          </div>
-          <div className="btn" onClick={() => logIn()}>
-            LOG IN
-          </div>
+            <button className="btn">LOG IN</button>
+          </form>
         </div>
       );
     }

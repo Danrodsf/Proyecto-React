@@ -104,7 +104,7 @@ const NewMovie = (props) => {
               {inputs.map((input) => (
                 <FormInput key={input.id} {...input} onChange={inputHandler} />
               ))}
-              <button className="btn">Submit</button>
+              <button className="btnOrange">Submit</button>
             </form>
             <div>{msgError}</div>
           </div>
