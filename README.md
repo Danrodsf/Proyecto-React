@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Proyecto Front-End con React/Redux.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Ir a MovieApp](https://dev.dmvllzhb3btq7.amplifyapp.com/).
 
-## Available Scripts
+El objetivo del proyecto es crear un Frontend completamente funcional y enlazado al proyecto de API desarrollado anteriormente y así demostrar el aprendizaje obtenido del stack en su totalidad!
 
-In the project directory, you can run:
+El stack a usar será MERN con Mysql:
 
-### `npm start`
+- Mysql
+- Express
+- React
+- NojeJs
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Para crear el proyecto junto con la estructura de archivos necesaria y el repositorio en local:
+Se utiliza el comando `npx create-react-app`.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Para conectarnos con la API utilizaremos "Axios":
+Se instala con el comando `npm i axios`.
 
-### `npm test`
+Luego necesitaremos de instalar "react-router-dom" para crear una navegación fluida y reactiva entre vistas:
+Se instala con el comando `npm i react-router-dom`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+La API que estará enlaza al Front-End está desplegada en heroku con el link: https://drs-proyecto-api.herokuapp.com/.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Contiene Todos los [ENDPOINTS](https://drs-proyecto-api.herokuapp.com/docs) del proyecto de Api
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Permite hacer el Crud Completo como Admin a las películas, usuarios, y pedidos.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Como usuario, solo se puede loguear, modificar sus propios datos de usuario, ver películas, buscar películas por id, título, género, reparto y ciudad, y puede alquilar aquellas películas que se encuentren disponibles en la ciudad del usuario.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Capturas de pantalla
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Vista Home
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<img src=https://raw.githubusercontent.com/Danrodsf/Proyecto-React/Dev/src/img/home.png width="500" height="300">
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Vista Movies
 
-## Learn More
+<img src=https://raw.githubusercontent.com/Danrodsf/Proyecto-React/Dev/src/img/movies.png width="500" height="300">
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Vista Movie
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src=https://raw.githubusercontent.com/Danrodsf/Proyecto-React/Dev/src/img/movie.png width="500" height="300">
 
-### Code Splitting
+### Vista Users
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<img src=https://raw.githubusercontent.com/Danrodsf/Proyecto-React/Dev/src/img/users.png width="500" height="300">
 
-### Analyzing the Bundle Size
+### Vista Orders
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src=https://raw.githubusercontent.com/Danrodsf/Proyecto-React/Dev/src/img/orders.png width="500" height="300">

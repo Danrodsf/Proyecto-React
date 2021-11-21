@@ -1,0 +1,24 @@
+.formInput {
+  display: flex;
+  flex-direction: column;
+  width: 20em;
+
+  input {
+    align-self: center;
+  }
+
+  span {
+    font-size: 0.7em;
+    text-align: center;
+    color: $orange;
+    display: none;
+  }
+
+  input:invalid[focused="true"] {
+    border: 0.2em solid $orange;
+  }
+
+  input:invalid[focused="true"] ~ span {
+    display: block;
+  }
+}

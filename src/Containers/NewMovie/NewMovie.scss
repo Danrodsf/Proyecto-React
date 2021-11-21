@@ -1,0 +1,10 @@
+.newMovieInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  border: 0.2em solid $orange;
+  border-radius: 0.5em;
+  background-color: $darkgray;
+}

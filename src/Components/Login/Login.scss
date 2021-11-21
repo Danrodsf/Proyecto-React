@@ -1,0 +1,40 @@
+.loginView {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: white;
+
+  button {
+    all: unset;
+  }
+
+  form {
+    all: unset;
+  }
+
+  .error {
+    width: 30%;
+  }
+
+  .inputs {
+    display: flex;
+    width: 60%;
+  }
+
+  .Btn {
+    width: 10%;
+  }
+
+  h5 {
+    text-align: center;
+    color: $darkgray;
+  }
+  .logged {
+    margin-right: 2em;
+  }
+
+  .profile {
+    margin-left: 1em;
+  }
+}

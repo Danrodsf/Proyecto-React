@@ -1,0 +1,48 @@
+.movieNav {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .error {
+    font-size: 1em;
+    color: $orange;
+  }
+}
+
+.movieInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+  .movieContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: row;
+  }
+  .movies {
+    display: flex;
+    width: 22em;
+    border: 0.2em solid $orange;
+    border-radius: 0.5em;
+    margin: 2em 2em 0 2em;
+    background-color: $darkgray;
+  }
+  .poster {
+    width: 100%;
+  }
+}
+
+.editInfo {
+  background-color: $darkgray;
+  border: 0.2em solid $orange;
+  border-radius: 0.5em;
+  padding: 0 1em 0 1em;
+}
