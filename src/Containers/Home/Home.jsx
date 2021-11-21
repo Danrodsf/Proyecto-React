@@ -1,11 +1,15 @@
 import { connect } from "react-redux";
+import logo from "../../img/logo.png";
 
 const Home = (props) => {
   if (props.state.change <= 1) {
     return (
       <div className="view">
         <div className="container">
-          <h1>Welcome to MovieAPP</h1>
+          <div className="logo">
+            <img className="logopng" src={logo} alt="logo" />
+            <h1>MovieAPP</h1>
+          </div>
         </div>
       </div>
     );

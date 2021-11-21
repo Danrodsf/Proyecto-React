@@ -70,9 +70,9 @@ const Movie = (props) => {
                   Rent
                 </div>
               </div>
-              <div>{msgError}</div>
             </div>
           </div>
+          <div className="error">{msgError}</div>
         </div>
       </div>
     );

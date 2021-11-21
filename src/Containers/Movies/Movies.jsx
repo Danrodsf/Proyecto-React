@@ -209,6 +209,7 @@ const GetMovies = (props) => {
                       <img
                         alt={movie.id}
                         className="poster"
+                        loading="lazy"
                         onClick={() => chooseMovie(movie)}
                         src={`${url}${movie.posterPath}`}
                       />
