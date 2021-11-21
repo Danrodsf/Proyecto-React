@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border: 0.2em solid $orange;
+  outline: 0.2em solid $orange;
   border-radius: 0.5em;
   height: 70%;
   width: 70%;
@@ -17,7 +17,7 @@
     align-items: center;
     .poster {
       height: 70%;
-      border: 0.2em solid $darkgray;
+      outline: 0.2em solid $darkgray;
     }
     .info {
       height: 50%;

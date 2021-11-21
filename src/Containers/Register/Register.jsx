@@ -54,10 +54,11 @@ const Register = (props) => {
       name: "city",
       type: "text",
       placeholder: "City",
+      className: "capitalize",
       errorMessage:
         "We are currently available only in Valencia, Madrid or Zaragoza",
       label: "City",
-      pattern: "Valencia|valencia|Madrid|madrid|Zaragoza|zaragoza",
+      pattern: "Valencia|Madrid|Zaragoza",
       required: true,
     },
     {
