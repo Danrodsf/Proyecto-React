@@ -7,27 +7,10 @@ const Footer = () => {
 
   switch (location.pathname) {
     case "/":
-      return (
-        <div className="footer">
-          <div className="fcontainer">
-            <div className="logo">
-              <img className="logopng" src={logo} alt="logo" />
-              <p>MovieApp</p>
-            </div>
-            <div className="copyright">
-              <p>© COPYRIGHT 2021-2022 MOVIEAPP</p>
-            </div>
-            <div className="socialMedia">
-              <div className="fa fa-facebook"></div>
-              <div className="fa fa-twitter"></div>
-              <div className="fa fa-google"></div>
-              <div className="fa fa-instagram"></div>
-              <div className="fa fa-android"></div>
-            </div>
-          </div>
-        </div>
-      );
     case "/register":
+    case "/profile":
+    case "/movie":
+    case "/newmovie":
       return (
         <div className="footer">
           <div className="fcontainer">
