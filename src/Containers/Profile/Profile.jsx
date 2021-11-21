@@ -97,9 +97,9 @@ const Profile = (props) => {
       type: "text",
       placeholder: "City",
       errorMessage:
-        "We are currently available only in Valencia, Madrid or Zaragoza",
+        "We are currently available only in Valencia, Madrid or Zaragoza (Case sensitive)",
       label: "City",
-      pattern: "Valencia|valencia|Madrid|madrid|Zaragoza|zaragoza",
+      pattern: "Valencia|Madrid|Zaragoza",
       required: true,
     },
   ];
@@ -124,6 +124,7 @@ const Profile = (props) => {
                     key={input.id}
                     {...input}
                     value={creds[input.name]}
+                    autoComplete="on"
                     onChange={profileHandler}
                   />
                 ))}

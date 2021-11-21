@@ -1,28 +1,33 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { UPDATEORDERS } from "../../redux/types";
+import { UPDATEORDERS, SETSTATE } from "../../redux/types";
 import Select from "../../Components/Select/Select";
+import FormInput from "../../Components/FormInputs/FormInputs";
 
 const GetOrders = (props) => {
   let token = {
     headers: { Authorization: `Bearer ${props.credentials.token}` },
   };
 
-  //HOOKS
   const [orders, setOrders] = useState([]);
   const [msgError, setmsgError] = useState("");
+  const [data, setData] = useState({
+    userId: "",
+    movieId: "",
+  });
 
-  //UseEffect
+  const inputHandler = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateOrder(props.state.id);
+  };
 
   useEffect(() => {
-    if (props.data.filter.filter) {
-      return;
-    } else {
-      setTimeout(() => {
-        getAllOrders();
-      }, 2000);
-    }
+    getAllOrders();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -93,6 +98,24 @@ const GetOrders = (props) => {
     }
   };
 
+  const updateOrder = async (id) => {
+    let body = {
+      userId: data.userId,
+      movieId: data.movieId,
+    };
+    try {
+      await axios.put(
+        `https://drs-proyecto-api.herokuapp.com/orders/${id}`,
+        body,
+        token
+      );
+      setmsgError("Order Updated");
+      returnInitalState();
+    } catch (error) {
+      setmsgError("Order Couldn't be Updated");
+    }
+  };
+
   const deleteOrder = async (id) => {
     try {
       await axios.delete(
@@ -114,6 +137,48 @@ const GetOrders = (props) => {
     }
   };
 
+  const editBtn = (orderId) => {
+    let data = {
+      change: 1,
+      id: orderId,
+    };
+    props.dispatch({ type: SETSTATE, payload: data });
+  };
+
+  const returnInitalState = () => {
+    let data = {
+      change: 0,
+    };
+    props.dispatch({ type: SETSTATE, payload: data });
+    setmsgError("");
+    getAllOrders();
+  };
+
+  const inputs = [
+    {
+      id: 1,
+      name: "userId",
+      type: "number",
+      placeholder: "UserId",
+      errorMessage: "UserId should be 1-3 characters",
+      label: "UserId",
+      min: "0",
+      pattern: "^.{1,3}$",
+      required: true,
+    },
+    {
+      id: 2,
+      name: "movieId",
+      type: "number",
+      placeholder: "MovieId",
+      errorMessage: "MovieId should be 1-3 characters",
+      label: "MovieId",
+      min: "0",
+      pattern: "^.{1,3}$",
+      required: true,
+    },
+  ];
+
   const formatDate = (initialDate) => {
     let splitDate = initialDate.split(/[- : T .]/);
     let arrayDate = [splitDate[2], splitDate[1], splitDate[0]];
@@ -123,40 +188,77 @@ const GetOrders = (props) => {
 
   if (props.credentials?.user?.admin) {
     if (orders[0]?.id) {
-      return (
-        <div className="view">
-          <div className="container">
-            <div className="orderNav">
-              <Select />
-              <div className="error">{msgError}</div>
-            </div>
-            <div className="orderInfo">
-              {orders.map((order) => {
-                return (
-                  <div key={order.id} className="orders">
-                    <div>
-                      <h4>Order Number: {order?.id}</h4>
-                      <p>User Name: {order?.user?.name}</p>
-                    </div>
-                    <p>User ID: {order?.userId}</p>
-                    <p>Rented Movie: {order?.movie?.title}</p>
-                    <p>Movie ID: {order?.movieId}</p>
-                    <p>City: {order.user?.city}</p>
-                    <p>Rent Date: {formatDate(order?.rentDate)}</p>
-                    <p>Return Date: {formatDate(order?.returnDate)}</p>
-                    <div
-                      className="btnOrange"
-                      onClick={() => deleteAlert(order.id)}
-                    >
-                      Delete
-                    </div>
+      if (props.state.change === 1) {
+        return (
+          <div className="view">
+            <div className="container">
+              <div className="editInfo">
+                <form onSubmit={handleSubmit}>
+                  <h1>Edit Order</h1>
+                  {inputs.map((input) => (
+                    <FormInput
+                      key={input.id}
+                      {...input}
+                      onChange={inputHandler}
+                    />
+                  ))}
+                  <button className="btnOrange">Submit</button>
+                  <div
+                    className="btnOrange"
+                    onClick={() => returnInitalState()}
+                  >
+                    go back
                   </div>
-                );
-              })}
+                </form>
+                <div>{msgError}</div>
+              </div>
             </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div className="view">
+            <div className="container">
+              <div className="orderNav">
+                <Select />
+                <div className="error">{msgError}</div>
+              </div>
+              <div className="orderInfo">
+                {orders.map((order) => {
+                  return (
+                    <div key={order.id} className="ordersContainer">
+                      <div className="orders">
+                        <h4>Order Number: {order?.id}</h4>
+                        <p>User Name: {order?.user?.name}</p>
+                        <p>User ID: {order?.userId}</p>
+                        <p>Rented Movie: {order?.movie?.title}</p>
+                        <p>Movie ID: {order?.movieId}</p>
+                        <p>City: {order.user?.city}</p>
+                        <p>Rent Date: {formatDate(order?.rentDate)}</p>
+                        <p>Return Date: {formatDate(order?.returnDate)}</p>
+                      </div>
+                      <div className="buttons">
+                        <div
+                          className="btnOrange"
+                          onClick={() => editBtn(order.id)}
+                        >
+                          Update
+                        </div>
+                        <div
+                          className="btnOrange"
+                          onClick={() => deleteAlert(order.id)}
+                        >
+                          Delete
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        );
+      }
     } else if (!msgError) {
       return (
         <div className="view">
@@ -216,5 +318,6 @@ const GetOrders = (props) => {
 
 export default connect((state) => ({
   credentials: state.credentials,
+  state: state.state,
   data: state.data,
 }))(GetOrders);

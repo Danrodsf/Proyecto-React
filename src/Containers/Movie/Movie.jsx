@@ -80,11 +80,26 @@ const Movie = (props) => {
     return (
       <div className="view">
         <div className="container">
-          <div className="movie">
-            <h2>{JSON.stringify(movie.title)}</h2>
-            <p>{movie.genre}</p>
-            <p>{movie.cast}</p>
-            <p>{movie.city}</p>
+          <div
+            className="background"
+            style={{ backgroundImage: `url("${url + movie.backdropPath}")` }}
+          >
+            <div className="infoContainer">
+              <img
+                className="poster"
+                src={`${url}${movie.posterPath}`}
+                alt={movie.title}
+              />
+              <div className="info">
+                <h2>{movie.title}</h2>
+                <p>Genre: {movie.genre}</p>
+                <p>Rating: {movie.rating}</p>
+                <p>Cast: {movie.cast}</p>
+                <p>Available City: {movie.city}</p>
+                <p>Overview: {movie.overview}</p>
+                <p>Release Date: {formatDate(movie.releaseDate)}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

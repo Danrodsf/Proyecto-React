@@ -1,8 +1,51 @@
 .footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 12vh;
+  background: $orangegradient;
+  color: white;
+  .fcontainer {
+    width: 100%;
+    height: 100%;
+    max-width: 1920px;
     display: flex;
-    justify-content:center;
-    align-items: center;
-    height: 12vh;
-    background: $orangegradient;
-    color: white;
+    .logo {
+      display: flex;
+      justify-content: flex-start;
+      width: 33.333%;
+      height: 100%;
+      .logopng {
+        height: 40%;
+        margin-left: 1em;
+      }
+      p {
+        font-size: 2em;
+        font-weight: bold;
+      }
+    }
+    .copyright {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 33.333%;
+      p {
+        font-size: 1.3em;
+      }
+    }
+    .socialMedia {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 33.333%;
+      font-size: 1.5em;
+    }
+    .fa {
+      cursor: pointer;
+      margin: 0.5em;
+    }
+    .fa:hover {
+      color: $darkgray;
+    }
+  }
 }

@@ -8,6 +8,8 @@
   height: 70%;
   width: 70%;
   background-size: cover;
+  padding: 2em;
+
   .infoContainer {
     height: 100%;
     width: 100%;
@@ -15,6 +17,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    padding: inherit;
     .poster {
       height: 70%;
       outline: 0.2em solid $darkgray;
@@ -29,6 +32,12 @@
     }
     h2 {
       color: $orange;
+    }
+    .btnOrange {
+      font-size: 1em;
+      padding: 0.5em;
+      margin-left: 0;
+      font-weight: bold;
     }
   }
 }

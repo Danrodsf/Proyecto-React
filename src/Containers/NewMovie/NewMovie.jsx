@@ -9,10 +9,15 @@ const NewMovie = (props) => {
   };
 
   const [data, setData] = useState({
-    title: null,
-    genre: null,
-    cast: null,
-    city: null,
+    title: "",
+    genre: "",
+    cast: "",
+    city: "",
+    overview: "",
+    releaseDate: "",
+    rating: "",
+    posterPath: "",
+    backdropPath: "",
   });
 
   const [msgError, setmsgError] = useState("");
@@ -32,6 +37,11 @@ const NewMovie = (props) => {
       genre: data.genre,
       cast: data.cast,
       city: data.city,
+      overview: data.overview,
+      releaseDate: data.releaseDate,
+      rating: data.rating,
+      posterPath: data.posterPath,
+      backdropPath: data.backdropPath,
     };
 
     try {
@@ -64,10 +74,9 @@ const NewMovie = (props) => {
       type: "text",
       placeholder: "genre",
       errorMessage:
-        "Valid Genres are: Action|Drama|Horror|Romance|Comedy|Thriller|Sci-fi|Adventure|Crime|Fantasy",
+        "Valid Genres are: Action|Adventure|Fantasy|Sci-fi (Case Sensitive)",
       label: "Genre",
-      pattern:
-        "Action|action|Drama|drama|Horror|horror|Romance|romance|Comedy|comedy|Thriller|thriller|Sci-fi|sci-fi|Adventure|adventure|Crime|crime|Fantasy|fantasy",
+      pattern: "Action|Adventure|Fantasy|Sci-fi",
       required: true,
     },
     {
@@ -78,7 +87,7 @@ const NewMovie = (props) => {
       errorMessage:
         "We are currently available only in Valencia, Madrid or Zaragoza",
       label: "City",
-      pattern: "Valencia|valencia|Madrid|madrid|Zaragoza|zaragoza",
+      pattern: "Valencia|Madrid|Zaragoza",
       required: true,
     },
     {
@@ -90,6 +99,59 @@ const NewMovie = (props) => {
         "Cast should be 3-26 characters and shouldn't include any special character!",
       label: "Cast",
       pattern: "^[A-Za-z0-9 ]{3,26}$",
+      required: true,
+    },
+    {
+      id: 5,
+      name: "overview",
+      type: "text",
+      placeholder: "overview",
+      errorMessage: "Overview should be 10-255 characters",
+      label: "Overview",
+      pattern: "^.{10,255}$",
+      required: true,
+    },
+    {
+      id: 6,
+      name: "rating",
+      type: "number",
+      placeholder: "rating",
+      errorMessage: "Rating should be 1-4 characters and must be only Numbers",
+      label: "Rating",
+      pattern: "^[0-9]{1,4}$",
+      step: "0.01",
+      min: "0",
+      max: "10",
+      required: true,
+    },
+    {
+      id: 7,
+      name: "releaseDate",
+      type: "date",
+      placeholder: "Release Date",
+      errorMessage:
+        "ReleaseDate should be 1-4 characters and must be only Numbers",
+      label: "Release Date",
+      required: true,
+    },
+    {
+      id: 8,
+      name: "posterPath",
+      type: "text",
+      placeholder: "Poster Path",
+      errorMessage: "Poster Path should be 5-50 characters",
+      label: "Poster Path",
+      pattern: "^.{10,50}$",
+      required: true,
+    },
+    {
+      id: 9,
+      name: "backdropPath",
+      type: "text",
+      placeholder: "Backdrop Path",
+      errorMessage: "Backdrop Path should be 5-50 characters",
+      label: "Backdrop Path",
+      pattern: "^.{10,50}$",
       required: true,
     },
   ];

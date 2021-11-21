@@ -45,15 +45,6 @@ input:hover {
   border: 0.2em solid $orange;
 }
 
-.view {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(../img/diagmonds.png);
-  background-repeat: repeat;
-  color: white;
-}
-
 .container {
   max-width: 1920px;
   width: 100%;
@@ -65,6 +56,15 @@ input:hover {
   overflow: auto;
   scrollbar-width: thin;
   scrollbar-color: $orange $graygradient;
+}
+
+.view {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: url(../img/diagmonds.png);
+  background-repeat: repeat;
+  color: white;
 }
 
 .btn {

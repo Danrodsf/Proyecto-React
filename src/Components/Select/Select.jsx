@@ -61,7 +61,7 @@ const Select = (props) => {
               value={search}
               placeholder="Search"
             />
-            <div className="error">{msgError}</div>
+            <div className="inputError">{msgError}</div>
           </div>
           <div className="options">
             <select name="select" value={select} onChange={selectHandler}>
@@ -86,13 +86,16 @@ const Select = (props) => {
     case "/users":
       return (
         <div className="select">
-          <input
-            type="text"
-            name="data"
-            onChange={searchHandler}
-            value={search}
-            placeholder="Search"
-          />
+          <div className="input">
+            <input
+              type="text"
+              name="data"
+              onChange={searchHandler}
+              value={search}
+              placeholder="Search"
+            />
+            <div className="inputError">{msgError}</div>
+          </div>
           <select name="select" value={select} onChange={selectHandler}>
             <option value="id">Id</option>
             <option value="city">City</option>
@@ -103,20 +106,22 @@ const Select = (props) => {
           <div className="btnOrange" onClick={() => reset()}>
             Reset
           </div>
-          <div className="error">{msgError}</div>
         </div>
       );
 
     case "/orders":
       return (
         <div className="select">
-          <input
-            type="text"
-            name="data"
-            onChange={searchHandler}
-            value={search}
-            placeholder="Search"
-          />
+          <div className="input">
+            <input
+              type="text"
+              name="data"
+              onChange={searchHandler}
+              value={search}
+              placeholder="Search"
+            />
+            <div className="inputError">{msgError}</div>
+          </div>
           <select name="select" value={select} onChange={selectHandler}>
             <option value="id">Id</option>
             <option value="userId">UserId</option>
@@ -127,7 +132,6 @@ const Select = (props) => {
           <div className="btnOrange" onClick={() => reset()}>
             Reset
           </div>
-          <div className="error">{msgError}</div>
         </div>
       );
 

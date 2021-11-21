@@ -17,18 +17,29 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  .ordersContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: row;
+  }
   .orders {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 25em;
-    height: 35em;
+    width: 26em;
+    height: 30em;
     border: 0.2em solid $orange;
     border-radius: 0.5em;
-    padding: 0.5em;
-    margin: 2em;
+    padding: 0 1em 0 1em;
+    margin: 2em 2em 0 2em;
     background-color: $darkgray;
+
     p {
       display: flex;
       justify-content: center;
@@ -36,11 +47,11 @@
       height: 2em;
     }
   }
-  h2 {
-    color: rgb(199, 73, 15);
-  }
-  .btnOrange {
-    width: 100%;
-    margin: 1em 0 1em 0;
-  }
+}
+
+.editInfo {
+  background-color: $darkgray;
+  border: 0.2em solid $orange;
+  border-radius: 0.5em;
+  padding: 0 1em 0 1em;
 }

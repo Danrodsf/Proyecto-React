@@ -9,11 +9,11 @@ const Register = (props) => {
 
   //Hooks
   const [creds, setCreds] = useState({
-    name: null,
-    email: null,
-    city: null,
-    password: null,
-    confirmPassword: null,
+    name: "",
+    email: "",
+    city: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const [msgError, setmsgError] = useState("");
@@ -34,6 +34,7 @@ const Register = (props) => {
       name: "name",
       type: "text",
       placeholder: "Username",
+      value: "",
       errorMessage:
         "Username should be 3-16 characters and shouldn't include any special character!",
       label: "Username",
@@ -45,6 +46,7 @@ const Register = (props) => {
       name: "email",
       type: "email",
       placeholder: "Email",
+      value: "",
       errorMessage: "It should be a valid email address!",
       label: "Email",
       required: true,
@@ -54,9 +56,9 @@ const Register = (props) => {
       name: "city",
       type: "text",
       placeholder: "City",
-      className: "capitalize",
+      value: "",
       errorMessage:
-        "We are currently available only in Valencia, Madrid or Zaragoza",
+        "We are currently available only in Valencia, Madrid or Zaragoza (case sensitive)",
       label: "City",
       pattern: "Valencia|Madrid|Zaragoza",
       required: true,
@@ -66,6 +68,7 @@ const Register = (props) => {
       name: "password",
       type: "password",
       placeholder: "Password",
+      value: "",
       errorMessage: "Password should be 4-20 characters",
       label: "Password",
       pattern: "^.{4,20}$",
@@ -76,6 +79,7 @@ const Register = (props) => {
       name: "confirmPassword",
       type: "password",
       placeholder: "Confirm Password",
+      value: "",
       errorMessage: "Passwords don't match!",
       label: "Confirm Password",
       pattern: creds.password,
@@ -128,6 +132,7 @@ const Register = (props) => {
                   key={input.id}
                   {...input}
                   value={creds[input.name]}
+                  autoComplete="on"
                   onChange={inputHandler}
                 />
               ))}

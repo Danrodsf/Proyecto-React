@@ -4,6 +4,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  .error {
+    font-size: 1em;
+    color: $orange;
+  }
   .btn {
     height: 2em;
     width: 10em;
@@ -16,26 +20,37 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  .usersContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: row;
+  }
   .users {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 25em;
+    width: 20em;
     height: 20em;
     border: 0.2em solid $orange;
     border-radius: 0.5em;
-    padding: 0.5em;
-    margin: 2em;
-    line-height: 0.1em;
+    padding: 0 1em 0 1em;
+    margin: 2em 2em 0 2em;
     background-color: $darkgray;
   }
   h2 {
     color: $orange;
-    padding-bottom: 1em;
   }
-  .btnOrange {
-    width: 100%;
-    margin: 1em 0 0 0;
-  }
+}
+
+.editInfo {
+  background-color: $darkgray;
+  border: 0.2em solid $orange;
+  border-radius: 0.5em;
+  padding: 0 1em 0 1em;
 }
