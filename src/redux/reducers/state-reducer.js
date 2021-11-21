@@ -1,20 +1,19 @@
-import { SETSTATE, INITSTATE } from '../types';
+import { SETSTATE, INITSTATE } from "../types";
 
 const initialState = {
-    change: ''
+  change: "",
 };
 
 const stateReducer = (state = initialState, action) => {
-    switch (action.type) {
+  switch (action.type) {
+    case SETSTATE:
+      return action.payload;
 
-        case SETSTATE:
-            return action.payload;
+    case INITSTATE:
+      return initialState;
 
-        case INITSTATE:
-            return initialState;
-
-        default:
-            return state
-    }
-}
+    default:
+      return state;
+  }
+};
 export default stateReducer;

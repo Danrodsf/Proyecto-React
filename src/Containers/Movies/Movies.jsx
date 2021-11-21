@@ -15,7 +15,6 @@ const GetMovies = (props) => {
 
   let url = "https://image.tmdb.org/t/p/original/";
 
-  //HOOKS
   const [movies, setMovies] = useState([]);
   const [msgError, setmsgError] = useState("");
   const [data, setData] = useState({

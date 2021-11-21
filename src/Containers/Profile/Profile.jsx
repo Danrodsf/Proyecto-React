@@ -10,11 +10,9 @@ const Profile = (props) => {
     headers: { Authorization: `Bearer ${props.credentials.token}` },
   };
 
-  //Hooks
   const [creds, setCreds] = useState(props.credentials.user);
   const [msgError, setmsgError] = useState("");
 
-  //Handlers
   const profileHandler = (e) => {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };

@@ -6,12 +6,10 @@ import { connect } from "react-redux";
 const Select = (props) => {
   let location = useLocation();
 
-  //hooks
   const [search, setSearch] = useState("");
   const [select, setSelect] = useState("id");
   const [msgError, setmsgError] = useState("");
 
-  //handler
   const searchHandler = (e) => {
     setSearch(e.target.value);
   };

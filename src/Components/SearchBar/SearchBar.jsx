@@ -6,11 +6,9 @@ import { connect } from "react-redux";
 const SearchBar = (props) => {
   let location = useLocation();
 
-  //hooks
   const [search, setSearch] = useState("");
   const [msgError, setMsgError] = useState("");
 
-  //handler
   const searchHandler = (e) => {
     setSearch(e.target.value);
   };

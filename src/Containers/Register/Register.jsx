@@ -7,7 +7,6 @@ import axios from "axios";
 const Register = (props) => {
   let navigate = useNavigate();
 
-  //Hooks
   const [creds, setCreds] = useState({
     name: "",
     email: "",
@@ -18,7 +17,6 @@ const Register = (props) => {
 
   const [msgError, setmsgError] = useState("");
 
-  //Handlers
   const inputHandler = (e) => {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };

@@ -8,11 +8,9 @@ import Button from "../Button/Button";
 const Login = (props) => {
   const navigate = useNavigate();
 
-  //Hooks
   const [msgError, setmsgError] = useState("");
   const [creds, setCreds] = useState({ email: "", password: "" });
 
-  //Handlers
   const inputHandler = (e) => {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
