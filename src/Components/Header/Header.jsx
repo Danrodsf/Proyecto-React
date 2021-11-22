@@ -15,9 +15,7 @@ const Header = (props) => {
             <Button view="USERS" url="/users" />
             <Button view="ORDERS" url="/orders" />
           </div>
-          <div className="navlogin">
-            <Login />
-          </div>
+          <Login />
         </div>
       </div>
     );
@@ -30,9 +28,7 @@ const Header = (props) => {
             <Button view="HOME" url="/" />
             <Button view="MOVIES" url="/movies" />
           </div>
-          <div className="navlogin">
-            <Login />
-          </div>
+          <Login />
         </div>
       </div>
     );
@@ -46,9 +42,7 @@ const Header = (props) => {
             <Button view="REGISTER" url="/register" />
             <Button view="MOVIES" url="/movies" />
           </div>
-          <div className="navlogin">
-            <Login />
-          </div>
+          <Login />
         </div>
       </div>
     );

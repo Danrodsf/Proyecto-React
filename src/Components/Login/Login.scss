@@ -4,37 +4,32 @@
   justify-content: flex-end;
   align-items: center;
   color: white;
-
+  margin-right: 1em;
   button {
     all: unset;
   }
-
   form {
     all: unset;
+    align-items: center;
+    position: relative;
   }
-
+  input {
+    width: 50%;
+  }
   .error {
-    width: 30%;
+    width: 100%;
+    position: absolute;
+    bottom: -0.7em;
+    color: $darkgray;
+    margin: 0 0 0 1em;
   }
-
   .inputs {
     display: flex;
-    width: 60%;
   }
-
-  .Btn {
-    width: 10%;
-  }
-
-  h5 {
-    text-align: center;
-    color: $darkgray;
+  .btn {
+    min-width: 4em;
   }
   .logged {
     margin-right: 2em;
-  }
-
-  .profile {
-    margin-left: 1em;
   }
 }

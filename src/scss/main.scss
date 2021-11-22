@@ -1,3 +1,12 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 // Paleta de Colores
 $orange: rgb(199, 73, 15);
 $darkorange: rgb(149, 53, 9);
@@ -27,6 +36,10 @@ $orangegradientinverted: linear-gradient(180deg, $darkorange 0%, $orange 100%);
 
 button {
   all: unset;
+}
+
+img {
+  max-height: 100%;
 }
 
 input {

@@ -86,10 +86,8 @@ const Login = (props) => {
     } else {
       return (
         <div className="loginView">
-          <div className="error">
-            <h5>{msgError}</h5>
-          </div>
           <form className="inputs" onSubmit={handleSubmit}>
+            <h5 className="error">{msgError}</h5>
             <input
               type="email"
               name="email"

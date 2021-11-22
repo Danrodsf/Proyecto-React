@@ -1,36 +1,26 @@
 .header {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   height: 8vh;
   background: $orangegradient;
 
   .hcontainer {
-    width: 100%;
-    max-width: 1920px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1920px;
+    width: 100%;
 
     .navbar {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
       align-items: center;
-      width: 50%;
       .logopng {
-        width: 6%;
+        width: 3em;
         margin-left: 1em;
       }
       .btn {
         margin: 0 0.5em 0 0.5em;
       }
-    }
-
-    .navlogin {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      width: 50%;
     }
   }
 }

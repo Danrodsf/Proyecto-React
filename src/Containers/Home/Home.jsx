@@ -6,7 +6,7 @@ const Home = (props) => {
     return (
       <div className="view">
         <div className="container">
-          <div className="logo">
+          <div className="logoMain">
             <img className="logopng" src={logo} alt="logo" />
             <h1>MovieAPP</h1>
           </div>
