@@ -1,6 +1,6 @@
 # Proyecto Front-End con React/Redux.
 
-[Ir a MovieApp](https://dev.dmvllzhb3btq7.amplifyapp.com/).
+[Ir a MovieApp](https://main.d3oqikxgf35qxe.amplifyapp.com/).
 
 El objetivo del proyecto es crear un Frontend completamente funcional y enlazado al proyecto de API desarrollado anteriormente y así demostrar el aprendizaje obtenido del stack en su totalidad!
 
